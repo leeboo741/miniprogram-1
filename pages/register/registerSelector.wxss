@@ -1,0 +1,86 @@
+/* pages/register/registerSelector.wxss */
+.page-box{
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-background{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.type-select-area{
+  margin-top: 50vh;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.type-select-item{
+  position: relative;
+  width: 180rpx;
+  height: 230rpx;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.type-select-image{
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 90rpx;
+  overflow: hidden;
+}
+
+.type-select-title{
+  font-size: 32rpx;
+  color: #778899;
+  height: 30rpx;
+  margin-top: 20rpx;
+  line-height: 30rpx;
+  text-align: center;
+}
+
+.selected-image{
+  position: absolute;
+  bottom: 50rpx;
+  right: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+  z-index: 2;
+}
+
+
+.next-button{
+  width: 70vw;
+  height: 100rpx;
+  margin-top: 40rpx;
+  z-index: 1;
+  border-radius: 50rpx;
+  background: #accd04;
+  color: white;
+  font-size: 35rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.detail-title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 30rpx;
+  padding: 25rpx;
+  color: #778899;
+  z-index: 1;
+}

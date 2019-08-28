@@ -1,0 +1,29 @@
+<!--pages/register/index.wxml-->
+<!-- 导航栏 -->
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='格鲁比会员注册'>
+</i-navigationbar>
+<view class="page-box">
+  <image class="page-background"
+         src="../../resource/register_background.jpg">
+  </image>
+  <image class="company-logo"
+         src="../../resource/logo.png">
+  </image>
+  <view class="register-button"
+        bindtap="tapRegister">
+    注册新会员
+  </view>
+  <view class="bind-vip-card"
+        bindtap="tapBind">
+    <view class="bind-vip-card-title">
+    绑定会员卡
+    </view>
+    <i-icon type="enterinto"
+            size="26"
+            color="#778899">
+    </i-icon>
+  </view>
+</view>

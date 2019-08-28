@@ -1,0 +1,139 @@
+/* pages/register/register.wxss */
+.page-box{
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-background{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.input-area{
+  margin-top: 50vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-box{
+  position: relative;
+  width: 90%;
+  height: 100rpx;
+  border-bottom: 1rpx solid gray;
+  padding: 0rpx 10rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bubble-box{
+  height: 60rpx;
+  width: 220rpx;
+  padding: 5rpx 10rpx;
+  position: absolute;
+  top: -50rpx;
+  right: 40rpx;
+}
+
+.bubble-image{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: 2;
+}
+
+.bubble-title{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  font-size: 24rpx;
+  color: white;
+  font-weight: bold;
+  height: 45rpx;
+  width: 100%;
+  line-height: 45rpx;
+  z-index: 3;
+  text-align: center;
+}
+
+.input-title{
+  font-size: 36rpx;
+  color: #778899;
+  flex-grow: 1; 
+}
+
+.date-area{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input{
+  width: 100%;
+  height: 100%;
+  font-size: 36rpx;
+  color: #778899;
+}
+
+.input-placeholder{
+  font-size: 36rpx;
+  color: #778899;
+}
+
+.get-code-button{
+  padding: 10rpx 15rpx;
+  border-radius: 8rpx;
+  border-width: 1rpx;
+  border-color: gray;
+  border-style: solid;
+  font-size: 28rpx;
+  color: #778899;
+  position: absolute;
+  right: 0rpx;
+  top: 25%;
+  height: 40%;
+  width: 160rpx;
+  text-align: center;
+  z-index: 2;
+}
+
+.register-button{
+  width: 70vw;
+  height: 100rpx;
+  margin-top: 20rpx;
+  z-index: 1;
+  border-radius: 50rpx;
+  background: #accd04;
+  color: white;
+  font-size: 35rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.description{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 30rpx;
+  padding: 25rpx;
+  color: #778899;
+  z-index: 1;
+}
+
+.description-agreement{
+  color: rgb(24, 181, 243);
+}
+

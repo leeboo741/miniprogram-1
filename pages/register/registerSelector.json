@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "i-navigationbar": "/components/navigationBar/index"
+  }
+}

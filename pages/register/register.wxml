@@ -1,0 +1,75 @@
+<!--pages/register/register.wxml-->
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='注册新会员'>
+</i-navigationbar>
+<view class="page-box">
+  <image class="page-background"
+         src="../../resource/register_background.jpg">
+  </image>
+  <view class="input-area">
+    <view class="input-box">
+      <view class="input-title">
+      {{type==0?"选择宝宝生日":"选择您的预产期"}}
+      </view>
+      <picker mode="date"
+              value="{{brithDay!=null?brithDay:date}}"
+              start="{{startDate}}"
+              end="{{endDate}}"
+              bindchange="bindTimeChange">
+        <view class="date-area">
+          <view class="input-title"
+                style="justify-self: flex-end;font-size: 28rpx;">
+          {{brithDay!=null?brithDay:"仅自己可见"}}
+          </view>
+          <i-icon type='enterinto'
+                  size='24'
+                  color="#778899">
+          </i-icon>
+        </view>
+      </picker>
+      <view class="bubble-box">
+        <image class="bubble-image"
+               src="../../resource/bubble_bg.png">
+        </image>
+        <view class="bubble-title">
+        生日当天有祝福哦！
+        </view>
+      </view>
+    </view>
+    <view class="input-box">
+      <input class="input"
+             placeholder="填入手机号"
+             bindinput="inputPhone"
+             placeholder-class='input-placeholder'>
+      
+      </input>
+    </view>
+    <view class="input-box">
+      <input class="input"
+             placeholder="填入短信验证码"
+             bindinput="inputCode">
+      
+      </input>
+      <view class="get-code-button"
+            bindtap="getCode">
+      {{getCodeTitle}}
+      </view>
+    </view>
+  </view>
+  <view class="register-button"
+        bindtap="tapRegister">
+  注册会员
+  </view>
+  <view class="description"
+        bindtap="tapBind">
+    <view class="description-title">
+    申请电子卡即代表同意 
+    </view>
+    <view class="description-agreement"
+          bindtap="tapAgreement">
+    《会员协议》
+    </view>
+  </view>
+</view>

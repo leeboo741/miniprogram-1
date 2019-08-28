@@ -1,0 +1,49 @@
+/* pages/register/index.wxss */
+
+.page-box{
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-background{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.company-logo{
+  width: 50vw;
+  height: 130rpx;
+  margin-top: 50vh;
+  z-index: 1;
+}
+
+.register-button{
+  width: 70vw;
+  height: 100rpx;
+  margin-top: 90rpx;
+  z-index: 1;
+  border-radius: 50rpx;
+  background: #accd04;
+  color: white;
+  font-size: 35rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.bind-vip-card{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 30rpx;
+  padding: 25rpx;
+  color: #778899;
+  z-index: 1;
+}

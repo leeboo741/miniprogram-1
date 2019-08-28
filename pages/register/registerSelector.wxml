@@ -1,0 +1,48 @@
+<!--pages/register/registerSelector.wxml-->
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='注册新会员'>
+</i-navigationbar>
+<view class="page-box">
+  <image class="page-background"
+         src="../../resource/register_background.jpg">
+  </image>
+  <view class="type-select-area">
+    <view class="type-select-item"
+          bindtap="tapSelectType"
+          data-type='0'>
+      <image class="type-select-image"
+             src="../../resource/register_type_baby.png">
+      </image>
+      <view class="type-select-title">
+      已有宝宝
+      </view>
+      <image class="selected-image"
+             src="../../resource/chose.png"
+             hidden="{{selectType!=0}}">
+      </image>
+    </view>
+    <view class="type-select-item"
+          bindtap="tapSelectType"
+          data-type='1'>
+      <image class="type-select-image"
+             src="../../resource/register_type_pregnant.png">
+      </image>
+      <view class="type-select-title">
+      孕期妈妈
+      </view>
+      <image class="selected-image"
+             src="../../resource/chose.png"
+             hidden="{{selectType!=1}}">
+      </image>
+    </view>
+  </view>
+  <view class="next-button"
+        bindtap="tapNextStep">
+  下一步
+  </view>
+  <view class="detail-title">
+  欢迎注册格鲁比会员
+  </view>
+</view>

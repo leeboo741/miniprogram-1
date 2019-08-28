@@ -1,0 +1,29 @@
+<!--components/navigationBar/index.wxml-->
+<view class="navbar i-class" 
+      style='height:{{naviHeight}}px;background-color:{{bgColor}}'>
+  <view class='navbar-title' 
+        style='top:{{naviTop}}px; color:{{titleColor}}'
+        bindtap="tapTitle">
+  {{pageName}}
+  </view>
+  <view wx:if="{{showNaviBtn}}" 
+        class="navbar-action-wrap navbar-action-group row item-center" 
+        style='top:{{naviTop}}px; height:{{menuHeight}}px; padding:0px; background-color:rgba(255,255,255,.6)'>
+      <i-icon type="return" 
+              color="{{iconColor}}" 
+              size="20" 
+              class="navbar-action_item" 
+              bindtap='naviBack'>
+      </i-icon>
+      <i-icon type="homepage" 
+              color="{{iconColor}}" 
+              size="20" 
+              class="navbar-action_item last" 
+              bindtap="toIndex"
+              wx:if='{{showHomeBtn}}'>
+      </i-icon>
+  </view>
+</view>
+<view class="navbar-background"
+      style='height:{{naviHeight}}px;background-color:{{bgColor}}'>
+</view>

@@ -1,0 +1,691 @@
+<!--pages/home/index.wxml-->
+<!-- 导航栏 -->
+<i-navigationbar titleColor='#ffffff'
+                 bgColor='#000000'
+                 showNaviBtn="{{false}}">
+</i-navigationbar>
+<!-- 头部 -->
+<view class="index-head-area">
+  <!-- 背景图 -->
+  <image class="index-head-bg"
+         src="{{parse.getHeadBackground(userInfo)}}">
+  </image>
+  <!-- 内容 -->
+  <view class="index-head-content">
+    <!-- 用户信息 -->
+    <view class="index-head-info-area">
+      <!-- 左区 -->
+      <view class="index-head-info-left">
+        <!-- 头像 -->
+        <view class='index-head-avater'
+              wx:if='{{!parse.isLogin(userInfo)}}'>
+          <open-data type="userAvatarUrl">
+            
+          </open-data>
+        </view>
+        
+        <image class="index-head-avater"
+               src="{{parse.getAvaterPath(userInfo)}}"
+               wx:else>
+        </image>
+        <!-- 王冠 -->
+        <image class="index-head-avater-crown"
+               src="../../resource/crown.png"
+               wx:if='{{parse.isBlackVip(userInfo)}}'>
+        </image>
+        <!-- vip -->
+        <view class="index-head-avater-vip-area"
+              wx:if='{{parse.showLevel(userInfo)}}'>
+          <image class="index-head-avater-vip-bg"
+                 src="../../resource/blackVip.png"
+                 wx:if='{{parse.isBlackVip(userInfo)}}'>
+          </image>
+          <image class="index-head-avater-vip-bg"
+                 src="../../resource/vip.png"
+                 wx:else>
+          </image>
+          <view class="index-head-avater-vip-title">
+          {{userInfo.level.name}}
+          </view>
+        </view>
+      </view>
+      <!-- 中区 -->
+      <view class="index-head-info-center">
+        <!-- 第一行 -->
+        <view class="index-head-info-center-first">
+          <!-- 客服 -->
+          <i-icon type="customerservice"
+                  color="{{parse.getHeadColor(userInfo)}}"
+                  size="25"
+                  i-class="index-head-info-center-btn"
+                  bindtap="tapCustomerService">
+          </i-icon>
+          <!-- 设置 -->
+          <i-icon type="setup"
+                  color="{{parse.getHeadColor(userInfo)}}"
+                  size="25"
+                  i-class="index-head-info-center-btn"
+                  bindtap="tapSetting"
+                  wx:if='{{parse.isLogin(userInfo)}}'>
+          </i-icon>
+        </view>
+        <!-- 第二行 -->
+        <view class="index-head-info-center-second">
+          <!-- 姓名 -->
+          <view class="index-head-info-center-customer-name"
+                style="color: parse.getHeadColor(userInfo)"
+                wx:if='{{parse.isLogin(userInfo)}}'>
+          {{userInfo.name}}
+          </view>
+          
+          <open-data type="userNickName" 
+                     class="index-head-info-center-customer-name"
+                     style='color: {{parse.getHeadColor(userInfo)}}'
+                     wx:else>
+          </open-data>
+        </view>
+        <!-- 登陆|注册 按钮 -->
+        <view class="index-head-info-center-login-button-box"
+              wx:if='{{!parse.isLogin(userInfo)}}'>
+          <view class="index-head-info-center-login-button"
+                bindtap="tapLoginOrRegister"
+                style="border-color: {{parse.getHeadColor(userInfo)}};">
+            <view class="index-head-info-center-login-button-title"
+                  style="color: {{parse.getHeadColor(userInfo)}}">
+            授权登陆/注册
+            </view>
+          </view>
+        </view>
+        <!-- 第三行 -->
+        <view class="index-head-info-center-third"
+              wx:if='{{parse.isLogin(userInfo)}}'>
+          <!-- 左 -->
+          <view class="index-head-info-center-third-left">
+            <!-- 进度条 -->
+            <i-progress percent="45" 
+                        status="active"
+                        hide-info
+                        i-class="index-head-info-center-progress">
+            </i-progress>
+            <!-- 进度条信息 -->
+            <view class="index-head-info-center-progress-info">
+              <view class="index-head-info-center-progress-value"
+                    style="color: {{parse.getHeadColor(userInfo)}}">
+              {{userInfo.level.name}}({{userInfo.level.value}})
+              </view>
+              <view class="index-head-info-center-progress-line"
+                    style="background: {{parse.getHeadColor(userInfo)}}">
+              </view>
+              <view class="index-head-info-center-progress-current-value"
+                    style="color: {{parse.getHeadCurrentColor(userInfo)}}">
+              {{userInfo.level.current}}
+              </view>
+              <view class="index-head-info-center-progress-line"
+                    style="background: {{parse.getHeadColor(userInfo)}}">
+              </view>
+              <view class="index-head-info-center-progress-value"
+                    style="color: {{parse.getHeadColor(userInfo)}}">
+              {{userInfo.level.nextName}}({{userInfo.level.nextValue}})
+              </view>
+            </view>
+          </view>
+          <!-- 右 -->
+          <view class="index-head-info-center-third-right"
+                bindtap="tapGetGrowthValue"
+                wx:if='{{parse.isBlackVip(userInfo)}}'>
+          获取成长值
+          </view>
+          <view class="index-head-info-center-third-right"
+                wx:else
+                style="background: lightgray;"
+                bindtap="tapVipRight">
+          会员权益
+          </view>
+        </view>
+      </view>
+      <!-- 右区 -->
+      <view class="index-head-info-right">
+      
+      </view>
+    </view>
+    <!-- 余额 二维码 -->
+    <view class="index-head-operate-area">
+      <!-- 余额 -->
+      <view class="index-head-operate-button-area">
+        <image class="index-head-operate-button-bg"
+               src="../../resource/balanceBackground.jpg">
+        </image>
+        <view class="index-head-operate-balance-info-area">
+          <view class="index-head-operate-balance-info-value">
+            <view class="index-head-operate-balance-info-value-title">
+            余额
+            </view>
+            <view class="index-head-operate-balance-info-value-value">
+            {{parse.getBalance(balance)}}
+            </view>
+            <view class="index-head-operate-balance-info-value-unit">
+            元
+            </view>
+            <view class="index-head-operate-balance-recharge"
+                  bindtap="tapBalanceRecharge">
+              <view class="index-head-operate-balance-recharge-button">
+              充值
+              </view>
+            </view>
+          </view>
+          <view class="index-head-operate-balance-detail"
+                bindtap="tapBalanceDetail">
+            <i-icon type="enterinto"
+                    color="#ee2c2c"
+                    size="16">
+            </i-icon>
+            <view class="index-head-operate-balance-detail-title">
+            明细
+            </view>
+            <view class="index-head-operate-balance-detail-value">
+            {{balance.detail}}
+            </view> 
+          </view>
+        </view>
+      </view>
+      <!-- 二维码 -->
+      <view class="index-head-operate-button-area"
+            bindtap="tapQRCode">
+        <image class="index-head-operate-button-bg"
+               src="../../resource/qrcodeBackground.jpg">
+        </image>
+        <view class="index-head-operate-QRCode">
+          <view class="index-head-operate-QRCode-title">
+          我的二维码
+          </view>
+          <view class="index-head-operate-QRCode-detail">
+          快捷扫码付款
+          </view>
+        </view>
+        <view class="index-head-operate-QRCode-image-box">
+          <image class="index-head-operate-QRCode-image"
+                src="../../resource/QRcode.png">
+          </image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="index-section">
+  <!-- 优惠券 -->
+  <view class="home-section">
+    <view class="home-section-head">
+      <view class="home-section-title"
+            style="border-color: {{parse.themeColor('优惠券')}};">
+      优惠券
+      </view>
+      <view class="home-section-head-detail">
+        <view class="coupon-count-title"
+              style="color: {{parse.lightThemeColor('优惠券')}}">
+        已有
+        </view>
+        <view class="coupon-count"
+              style="color: {{parse.themeColor('优惠券')}}">
+        {{parse.getCouponCount(userInfo)}}
+        </view>
+        <view class="coupon-count-title"
+              style="color: {{parse.lightThemeColor('优惠券')}}">
+        张
+        </view>
+        <view class="coupon-detail"
+              wx:if='{{parse.showCouponDetail(userInfo)}}'>
+        {{userInfo.couponExpireCount}}张优惠券即将到期
+        </view>
+      </view>
+      <view class="home-section-head-button-area">
+        <view class="home-section-head-detail-button"
+              bindtap="tapCouponDetail">
+          <i-icon type="enterinto"
+                  size="16"
+                  color="{{parse.themeColor('优惠券')}}">
+          </i-icon>
+          <view class="home-section-head-detail-button-title"
+                style="color: {{parse.themeColor('优惠券')}};">
+          明细
+          </view>
+        </view>
+        <view class="home-section-head-button"
+              style="background: {{parse.themeColor('优惠券')}};"
+              bindtap="tapReceiveCoupon">
+        去领券
+        </view>
+      </view>
+    </view>
+    <view class="empty-data"
+          wx:if='{{parse.showEmptyData(userInfo.couponList)}}'>
+      <view class="empty-data-content">
+        <image class="empty-data-image"
+              src="../../resource/noCoupon.png">
+        </image>
+        <view class="empty-data-title">
+        暂无优惠券
+        </view>
+      </view>
+    </view>
+    <swiper class="home-section-detail"
+            display-multiple-items="2"
+            next-margin="60rpx"
+            wx:else>
+      <block wx:for='{{userInfo.couponList}}'
+             wx:for-item='couponItem'
+             wx:for-index='couponIndex'
+             wx:key='{{couponIndex}}'>
+        <swiper-item bindtap='tapCoupon'
+                     data-couponindex='{{couponIndex}}'>
+          <view class="coupon-item">
+            <image class="coupon-item-bg-image"
+                  src="../../resource/couponbackground.png">
+            </image>
+            <view class="coupon-item-left-area">
+              <view class="coupon-item-left-title"
+                    style="color: {{parse.themeColor('优惠券')}};">
+              {{couponItem.name}}
+              </view>
+              <view class="coupon-item-left-detail"
+                    style="color: {{parse.themeColor('优惠券')}};">
+              {{couponItem.descripetion}}
+              </view>
+            </view>
+            <view class="coupon-item-right-area">
+              <view class="coupon-item-right-value"
+                    style="color: {{parse.themeColor('优惠券')}};">
+              ￥{{couponItem.amount}}
+              </view>
+              <view class="coupon-item-right-button"
+                    style="background: {{parse.themeColor('优惠券')}};">
+              去使用
+              </view>
+            </view>
+          </view>
+        </swiper-item> 
+      </block>
+    </swiper>
+  </view>
+  <!-- 我的积分 -->
+  <view class="home-section">
+    <view class="home-section-head">
+      <view class="home-section-title"
+            style="border-color: {{parse.themeColor('我的积分')}};">
+      我的积分
+      </view>
+      <view class="home-section-head-detail">
+        <view class="coupon-point"
+              style="color: {{parse.themeColor('我的积分')}};">
+        {{parse.getPoint(userInfo)}}
+        </view>
+        <view class="coupon-point-unit"
+              style="color: {{parse.themeColor('我的积分')}};">
+        分
+        </view>
+        <view class="coupon-detail"
+              wx:if='{{parse.showPointDetail(userInfo)}}'>
+        最近一次获得:{{userInfo.lastPoint}}分
+        </view>
+      </view>
+      <view class="home-section-head-button-area">
+        <view class="home-section-head-detail-button"
+              bindtap="tapPointDetail">
+          <i-icon type="enterinto"
+                  size="16"
+                  color="{{parse.themeColor('我的积分')}}">
+          </i-icon>
+          <view class="home-section-head-detail-button-title"
+                style="color: {{parse.themeColor('我的积分')}};">
+          明细
+          </view>
+        </view>
+        <view class="home-section-head-button"
+              style="background: {{parse.themeColor('我的积分')}};"
+              bindtap="tapExchange">
+        去兑换
+        </view>
+      </view>
+    </view>
+    <view class="empty-data"
+          wx:if='{{parse.showEmptyData(pointGoodsList)}}'>
+      <view class="empty-data-content">
+        <image class="empty-data-image"
+              src="../../resource/noGoods.png">
+        </image>
+        <view class="empty-data-title">
+        暂无可兑换积分商品
+        </view>
+      </view>
+    </view>
+    <swiper class="home-section-detail"
+            display-multiple-items="2"
+            next-margin="60rpx"
+            wx:else>
+      <block wx:for='{{pointGoodsList}}'
+             wx:for-item='pointItem'
+             wx:for-index='pointIndex'
+             wx:key='{{pointIndex}}'>
+        <swiper-item bindtap='tapPointGoods'
+                     data-goodsindex='{{pointIndex}}'>
+          <view class="coupon-item">
+            <image class="coupon-item-bg-image"
+                  src="../../resource/jifenbackground.png">
+            </image>
+            <view class="coupon-item-left-area">
+              <view class="coupon-item-left-title"
+                    style="color: {{parse.themeColor('我的积分')}};">
+              {{pointItem.brand}}
+              </view>
+              <view class="coupon-item-left-detail"
+                    style="color: {{parse.themeColor('我的积分')}};">
+              {{pointItem.type}}
+              </view>
+            </view>
+            <view class="coupon-item-right-area">
+              <view class="coupon-item-right-value"
+                    style="color: {{parse.themeColor('我的积分')}}; font-size: 22rpx;">
+              {{pointItem.point}}分+{{pointItem.amount}}元
+              </view>
+              <view class="coupon-item-right-button"
+                    style="background: {{parse.themeColor('我的积分')}};">
+              去兑换
+              </view>
+            </view>
+          </view>
+        </swiper-item> 
+      </block>
+    </swiper>
+  </view>
+  <!-- 项目储值 -->
+  <view class="home-section">
+    <view class="home-section-head">
+      <view class="home-section-title"
+            style="border-color: {{parse.themeColor('项目储值')}};">
+      项目储值
+      </view>
+      <view class="home-section-head-detail">
+        <view class="coupon-point"
+              style="color: {{parse.lightThemeColor('项目储值')}}">
+        {{parse.getProjectAmount(userInfo)}}
+        </view>
+        <view class="coupon-point-unit"
+              style="color: {{parse.themeColor('项目储值')}}">
+        元
+        </view>
+        <view class="coupon-detail"
+              wx:if='{{parse.showProjectDetail(userInfo)}}'>
+        有效期至:{{userInfo.projectExpireTime}}
+        </view>
+      </view>
+      <view class="home-section-head-button-area">
+        <view class="home-section-head-detail-button"
+              bindtap="tapProjectDetail">
+          <i-icon type="enterinto"
+                  size="16"
+                  color="{{parse.themeColor('项目储值')}}">
+          </i-icon>
+          <view class="home-section-head-detail-button-title"
+                style="color: {{parse.themeColor('项目储值')}};">
+          明细
+          </view>
+        </view>
+        <view class="home-section-head-button"
+              style="background: {{parse.themeColor('项目储值')}};"
+              bindtap="tapProjectRecharge">
+        去充值
+        </view>
+      </view>
+    </view>
+    <view class="empty-data"
+          wx:if='{{parse.showEmptyData(projectList)}}'>
+      <view class="empty-data-content">
+        <image class="empty-data-image"
+              src="../../resource/noProject.png">
+        </image>
+        <view class="empty-data-title">
+        暂无储值项目
+        </view>
+      </view>
+    </view>
+    <swiper class="home-section-detail"
+            display-multiple-items="2"
+            next-margin="60rpx"
+            wx:else>
+      <block wx:for='{{projectList}}'
+             wx:for-item='projectItem'
+             wx:for-index='projectIndex'
+             wx:key='{{projectIndex}}'>
+        <swiper-item bindtap='tapProject'
+                     data-projectindex='{{projectIndex}}'>
+          <view class="coupon-item">
+            <image class="coupon-item-bg-image"
+                  src="../../resource/projectbackground.png">
+            </image>
+            <view class="coupon-item-left-area">
+              <view class="coupon-item-left-title"
+                    style="color: {{parse.themeColor('项目储值')}};">
+              {{projectItem.name}}
+              </view>
+            </view>
+            <view class="coupon-item-right-area">
+              <view class="coupon-item-right-button"
+                    style="background: {{parse.themeColor('项目储值')}};">
+              预约项目
+              </view>
+            </view>
+          </view>
+        </swiper-item> 
+      </block>
+    </swiper>
+  </view>
+  <!-- 项目储值 -->
+  <view class="home-section">
+    <view class="home-section-head">
+      <view class="home-section-title"
+            style="border-color: {{parse.themeColor('寄存商品')}};">
+      寄存商品
+      </view>
+      <view class="home-section-head-detail">
+      </view>
+      <view class="home-section-head-button-area">
+        <view class="home-section-head-detail-button"
+              bindtap="tapDepositDetail">
+          <i-icon type="enterinto"
+                  size="16"
+                  color="{{parse.themeColor('寄存商品')}}">
+          </i-icon>
+          <view class="home-section-head-detail-button-title"
+                style="color: {{parse.themeColor('寄存商品')}};">
+          明细
+          </view>
+        </view>
+        <view class="home-section-head-button"
+              style="background: {{parse.themeColor('寄存商品')}};"
+              bindtap="tapReceiveDeposit">
+        取商品
+        </view>
+      </view>
+    </view>
+    <view class="empty-data"
+          wx:if='{{parse.showEmptyData(depositGoodsList)}}'>
+      <view class="empty-data-content">
+        <image class="empty-data-image"
+              src="../../resource/noDeposit.png">
+        </image>
+        <view class="empty-data-title">
+        暂无寄存商品
+        </view>
+      </view>
+    </view>
+    <view class="home-section-detail-2"
+          wx:else>
+      <view class="goods-item"
+            wx:for='{{depositGoodsList}}'
+            wx:for-item='goodsItem'
+            wx:for-index='goodsIndex'
+            wx:key='{{goodsIndex}}'>
+        <view class="goods-item-tag">
+        {{goodsIndex+1}}
+        </view>
+        <view class="goods-item-name">
+        {{goodsItem.name}}
+        </view>
+        <view class="goods-item-splice-line">
+        </view>
+        <view class="goods-item-count">
+        {{goodsItem.count}}{{goodsItem.unit}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<wxs module='parse'>
+  module.exports={
+    isBlackVip: function(userInfo) {
+      if (userInfo != null
+      && userInfo.isBlackVip != null 
+      && userInfo.isBlackVip) {
+        return true;
+      }
+      return false;
+    },
+    getHeadCurrentColor: function(userInfo) {
+      if (userInfo != null
+      && userInfo.isBlackVip != null 
+      && userInfo.isBlackVip) {
+        return "glod";
+      }
+      return "#2db7f5";
+    },
+    getHeadColor: function(userInfo){
+      if (userInfo != null
+      && userInfo.isBlackVip != null 
+      && userInfo.isBlackVip) {
+        return "#fff";
+      }
+      return "#000";
+    },
+    getHeadBackground: function (userInfo) {
+      if (userInfo != null
+      && userInfo.isBlackVip != null 
+      && userInfo.isBlackVip) {
+        return "../../resource/index_head_bg.png";
+      }
+      return "../../resource/index_head_bg_2.png";
+    },
+    showProjectDetail: function (userInfo) {
+      if (userInfo != null 
+      && userInfo.projectExpireTime != null
+      && userInfo.projectExpireTime.length > 0) {
+        return true;
+      }
+      return false;
+    },
+    showPointDetail: function (userInfo) {
+      if (userInfo != null 
+      && userInfo.lastPoint != null
+      && userInfo.lastPoint.length > 0) {
+        return true;
+      }
+      return false;
+    },
+    showCouponDetail: function (userInfo) {
+      if (userInfo != null 
+      && userInfo.couponExpireCount != null
+      && userInfo.couponExpireCount.length > 0) {
+        return true;
+      }
+      return false;
+    },
+    getCouponCount: function (userInfo) {
+      if (userInfo != null 
+      && userInfo.couponList != null
+      && userInfo.couponList.length > 0) {
+        return userInfo.couponList.length;
+      }
+      return 0;
+    },
+    getPoint: function(userInfo) {
+      if (userInfo != null 
+      && userInfo.point != null
+      && userInfo.point.length > 0) {
+        return userInfo.point;
+      }
+      return 0;
+    },
+    getProjectAmount: function (userInfo) {
+      if (userInfo != null 
+      && userInfo.projectAmount != null
+      && userInfo.projectAmount.length > 0) {
+        return userInfo.projectAmount;
+      }
+      return 0;
+    },
+    showEmptyData: function (datasource){
+      if (datasource == null || datasource.length <= 0) {
+        return true;
+      }
+      return false;
+    },
+    getBalance: function(balance){
+      if (balance != null
+      && balance.value != null) {
+        return balance.value;
+      }
+      return 0;
+    },
+    isLogin: function(userInfo){
+      if (userInfo != null) {
+        return true;
+      }
+      return false;
+    },
+    showLevel: function(userInfo) {
+      if (userInfo != null 
+      && userInfo.level != null 
+      && userInfo.level.length > 0) {
+        return true;
+      }
+      return false;
+    },
+    getAvaterPath: function(userInfo) {
+      if (userInfo != null
+       && userInfo.avater != null 
+       && userInfo.avater.length > 0) {
+        return userInfo.avater;
+      }
+      return "../../resource/noheader.png"
+    },
+    themeColor: function(type) {
+      if (type == "项目储值") {
+        return "#0ba6e9";
+      } else if (type == "优惠券") {
+        return "#f28100";
+      } else if (type == "red") {
+        return "";
+      } else if (type == "寄存商品") {
+        return "#e40182";
+      } else if (type == "我的积分") {
+        return "#acce00";
+      } else {
+        return "#fff";
+      }
+    },
+    lightThemeColor: function(type) {
+      if (type == "项目储值") {
+        return "#0ba6e9";
+      } else if (type == "优惠券") {
+        return "#f3ba33";
+      } else if (type == "red") {
+        return "";
+      } else if (type == "寄存商品") {
+        return "#e40182";
+      } else if (type == "我的积分") {
+        return "#acce00";
+      } else {
+        return "#fff";
+      }
+    }
+  }
+</wxs>
