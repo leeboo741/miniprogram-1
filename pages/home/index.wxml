@@ -65,8 +65,8 @@
                   color="{{parse.getHeadColor(userInfo)}}"
                   size="25"
                   i-class="index-head-info-center-btn"
-                  bindtap="tapSetting"
-                  wx:if='{{parse.isLogin(userInfo)}}'>
+                  wx:if='{{parse.isLogin(userInfo)}}'
+                  bindtap="tapSetting">
           </i-icon>
         </view>
         <!-- 第二行 -->

@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    height: null,
     intervalID: null, // 定时器Id
     getCodeTitle: "获取验证码", // 获取验证码标题
     ableGetCode: true, // 是否允许获得验证码
@@ -23,7 +24,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      height: app.globalData.pageHeight
+    })
   },
 
   /**

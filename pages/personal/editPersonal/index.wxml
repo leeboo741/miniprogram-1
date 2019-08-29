@@ -1,0 +1,131 @@
+<!--pages/personal/editPersonal/index.wxml-->
+
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='个人资料修改'>
+</i-navigationbar>
+<view class="head-area">
+  <image class="head-area-bg"
+         src="../../../resource/index_head_bg_2.png">
+  </image>
+  <view class="head-area-content">
+    <view class="head-avater-box">
+      <image class="head-avater"
+             src="{{avaterUrl}}"
+             wx:if="{{avaterUrl!=null&&avaterUrl.length>0}}">
+      </image>
+      <view class='head-avater'
+            wx:else>
+        <open-data type="userAvatarUrl">
+        </open-data>
+      </view>
+      <image class="head-avater-take-photo"
+             src='../../../resource/selectHead.png'>
+      </image>
+    </view>
+    <view class="head-avater-title">
+    更换头像
+    </view>
+  </view>
+</view>
+<view class="content-area">
+  <view class="input-box">
+    <view class="input-title">
+    昵称
+    </view>
+    <input class="input input-normal"
+           placeholder="{{name}}"
+           placeholder-class="input-placeholder">
+    </input>
+  </view>
+  <view class="input-box">
+    <view class="input-title">
+    居住地
+    </view>
+    <picker mode="region" 
+            bindchange="bindRegionChange"
+            style="flex-grow:1">
+      <view class="input">
+        <view class="input-normal"
+              wx:if="{{address!=null}}">
+        {{address}}
+        </view>
+        <view class="input-placeholder"
+              wx:else>
+        请选择居住地
+        </view>
+        <i-icon type='enterinto'
+                size='24'
+                color="#778899">
+        </i-icon>
+      </view>
+    </picker>
+  </view>
+  <view class="input-box">
+    <view class="input-title">
+    顾客类型
+    </view>
+    <picker value='{{type}}'
+            range='{{typeList}}'
+            bindchange="bindTypeChange"
+            style="flex-grow:1">
+      <view class="input">
+        <view class="input-normal">
+        {{parse.getTypeName(type)}}
+        </view>
+        <i-icon type='enterinto'
+                size='24'
+                color="#778899">
+        </i-icon>
+      </view>
+    </picker>
+  </view>
+  <view class="input-box">
+    <view class="input-title">
+    宝宝生日
+    </view>
+    <picker mode="date"
+            value="{{brithDay!=null?brithDay:date}}"
+            start="{{startDate}}"
+            end="{{endDate}}"
+            bindchange="bindTimeChange"
+            style="flex-grow:1">
+      <view class="input">
+        <view class="input-normal"
+              wx:if="{{brithDay!=null}}">
+        {{brithDay}}
+        </view>
+        <view class="input-placeholder"
+              wx:else>
+        {{date}}
+        </view>
+        <i-icon type='enterinto'
+                size='24'
+                color="#778899">
+        </i-icon>
+      </view>
+    </picker>
+  </view>
+</view>
+
+<view class="button-area">
+  <view class="operate-button green-button">
+  提交修改
+  </view>
+  <view class="operate-button red-button">
+  解除绑定
+  </view>
+</view>
+
+<wxs module='parse'>
+  module.exports={
+    getTypeName: function(type) {
+      if (type == 0) {
+        return "已有宝宝";
+      } else {
+        return "孕期妈妈";
+      }
+    }
+  }
+</wxs>

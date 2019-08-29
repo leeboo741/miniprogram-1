@@ -1,24 +1,18 @@
-// pages/register/index.js
-
-const app = getApp();
-const config = require("../../utils/config.js");
-
+// pages/personal/setting/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    height: null,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      height: app.globalData.pageHeight
-    })
+
   },
 
   /**
@@ -68,23 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  /**
-   * 点击注册
-   */
-  tapRegister: function () {
-    wx.navigateTo({
-      url: config.Page_Register_RegisterSelector,
-    })
-  },
-
-  /**
-   * 点击绑定
-   */
-  tapBind: function () {
-    wx.navigateTo({
-      url: config.Page_Register_BindVip,
-    })
-  },
+  }
 })

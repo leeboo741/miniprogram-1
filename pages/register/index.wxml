@@ -5,7 +5,8 @@
                  showNaviBtn="{{true}}"
                  pageName='格鲁比会员注册'>
 </i-navigationbar>
-<view class="page-box">
+<view class="page-box"
+      style="height: {{height}}px;">
   <image class="page-background"
          src="../../resource/register_background.jpg">
   </image>

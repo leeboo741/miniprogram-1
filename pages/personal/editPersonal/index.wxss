@@ -1,0 +1,124 @@
+/* pages/personal/editPersonal/index.wxss */
+
+.head-area{
+  width: 100vw;
+  height: 350rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.head-area-bg{
+  position: absolute;
+  width: 100%;
+  height: 350rpx;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: 0;
+}
+
+.head-area-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.head-avater-box{
+  position: relative;
+}
+
+.head-avater{
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 80rpx;
+  overflow: hidden;
+}
+
+.head-avater-take-photo{
+  position: absolute;
+  height: 40rpx;
+  width: 40rpx;
+  bottom: -20rpx;
+  left: 60rpx;
+}
+
+.head-avater-title{
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #acce00;
+  z-index: 1;
+}
+
+.content-area{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50rpx 0rpx;
+}
+
+.input-box{
+  width: 90%;
+  border-bottom: 1rpx solid gray;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input-title{
+  font-size: 32rpx;
+  font-weight: bold;
+  flex-shrink: 0;
+  width: 160rpx;
+  margin: 5rpx 15rpx;
+}
+
+.input{
+  margin: 5rpx 15rpx 5rpx 0rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.input-normal{
+  flex-grow: 1;
+  font-size: 30rpx;
+  color: gray;
+}
+
+.input-placeholder{
+  font-size: 30rpx;
+  color: gray;
+  flex-grow: 1;
+}
+
+.button-area{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.operate-button{
+  width: 80%;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-radius: 50rpx;
+  font-size: 36rpx;
+  color: white;
+  text-align: center;
+  margin: 15rpx;
+}
+
+.green-button{
+  background: #acce00;
+}
+
+.red-button{
+  background: #ee2c2c;
+}

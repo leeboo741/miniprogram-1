@@ -4,7 +4,12 @@
     "pages/register/index",
     "pages/register/bindVip/bindVip",
     "pages/register/register/registerSelector",
-    "pages/register/register/register"
+    "pages/register/register/register",
+    "pages/personal/setting/index",
+    "pages/personal/qrCode/index",
+    "pages/personal/editPersonal/index",
+    "pages/coupon/couponList/index",
+    "pages/coupon/receiveCoupon/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

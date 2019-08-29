@@ -263,6 +263,9 @@ Page({
   tapSetting: function () {
     console.log("点击设置按钮");
     // 跳转设置页面
+    wx.navigateTo({
+      url: config.Page_Personal_EditPersonal,
+    })
   },
 
   /**

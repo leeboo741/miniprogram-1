@@ -61,6 +61,7 @@ Component({
       app.globalData.naviHeight = naviHeight;
       app.globalData.naviTop = naviTop;
       app.globalData.windowHeight = wx.getSystemInfoSync()['windowHeight'];
+      app.globalData.pageHeight = app.globalData.windowHeight - app.globalData.naviHeight;
       this.setData({
         naviHeight: naviHeight,
         naviTop: naviTop,

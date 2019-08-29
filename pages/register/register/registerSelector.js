@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    height: null,
     selectType: 0, // 选中类型 0 已有baby 1 待产孕妇
   },
 
@@ -16,7 +17,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      height: app.globalData.pageHeight
+    })
   },
 
   /**

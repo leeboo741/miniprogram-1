@@ -1,7 +1,8 @@
-// pages/register/index.js
+// pages/personal/editPersonal/index.js
 
 const app = getApp();
-const config = require("../../utils/config.js");
+const config = require("../../../utils/config.js");
+const util = require("../../../utils/util.js");
 
 Page({
 
@@ -9,15 +10,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-    height: null,
+    avaterUrl: null, // 头像地址
+    name: null, // 昵称
+    address: null, // 居住地
+    type: 0, // 客户类型
+    typeList:["已有宝宝","孕期妈妈"],
+    birthday: null, // 宝宝生日
+    startDate: null, // 开始日期
+    endDate: null, // 结束日期
+    date: null, // 当前日期
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 初始化 发货日期 数据
+    let tempDateObj = util.dateLater(new Date(), 0);
+    let startDateObj = util.dateLater(new Date(), -368);
+    let endDateObj = util.dateLater(new Date(), 368);
     this.setData({
-      height: app.globalData.pageHeight
+      date: tempDateObj.time,
+      startDate: startDateObj.time,
+      endDate: endDateObj.time,
     })
   },
 
@@ -68,23 +83,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  /**
-   * 点击注册
-   */
-  tapRegister: function () {
-    wx.navigateTo({
-      url: config.Page_Register_RegisterSelector,
-    })
-  },
-
-  /**
-   * 点击绑定
-   */
-  tapBind: function () {
-    wx.navigateTo({
-      url: config.Page_Register_BindVip,
-    })
-  },
+  }
 })

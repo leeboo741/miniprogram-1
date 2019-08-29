@@ -12,6 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    height: null,
     intervalID: null, // 定时器Id
     getCodeTitle: "获取验证码", // 获取验证码标题
     ableGetCode: true, // 是否允许获得验证码
@@ -37,9 +38,8 @@ Page({
       date: tempDateObj.time,
       startDate: startDateObj.time,
       endDate: endDateObj.time,
-    })
-    this.setData({
-      type : options.type
+      height: app.globalData.pageHeight,
+      type: options.type
     })
   },
 
