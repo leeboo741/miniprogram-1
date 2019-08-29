@@ -317,7 +317,9 @@ Page({
    */
   tapCouponDetail: function () {
     console.log("点击优惠券明细");
-
+    wx.navigateTo({
+      url: config.Page_Coupon_CouponList,
+    })
   },
 
   /**
