@@ -1,8 +1,8 @@
 // pages/register/register.js
 
 const app = getApp();
-const config = require("../../utils/config.js");
-const util = require("../../utils/util.js");
+const config = require("../../../utils/config.js");
+const util = require("../../../utils/util.js");
 
 const intervalDuration = 60;
 

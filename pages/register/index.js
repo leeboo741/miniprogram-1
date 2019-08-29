@@ -71,7 +71,7 @@ Page({
    */
   tapRegister: function () {
     wx.navigateTo({
-      url: '/pages/register/registerSelector',
+      url: config.Page_Register_RegisterSelector,
     })
   },
 
@@ -80,7 +80,7 @@ Page({
    */
   tapBind: function () {
     wx.navigateTo({
-      url: '/pages/register/bindVip',
+      url: config.Page_Register_BindVip,
     })
   },
 })

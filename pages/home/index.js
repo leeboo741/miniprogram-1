@@ -273,7 +273,7 @@ Page({
     // 开始登录
     // this.wxLogin();
     wx.navigateTo({
-      url: '/pages/register/index',
+      url: config.Page_Register_Index,
     })
   },
 

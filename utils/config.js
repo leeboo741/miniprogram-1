@@ -48,6 +48,18 @@ const Key_IsLogin = "IsLogin"; // 是否已经登录
 const Value_Login = "Logining"; // 登录标识
 const Value_UnLogin = "UnLogining"; // 未登录标识
 
+/** =================================================== */
+/** 
+ *                      pages
+ */
+/** =================================================== */
+
+const Page_Home = "/pages/home/index"; // 首页
+const Page_Register_Index = "/pages/register/index"; // 注册首页
+const Page_Register_BindVip = "/pages/register/bindVip/bindVip"; // 绑定会员卡
+const Page_Register_RegisterSelector = "/pages/register/register/registerSelector"; // 注册类型选择
+const Page_Register_RegisterNew = "/pages/register/register/register"; // 注册新会员
+
 module.exports = {
   Service_Phone, // 客服电话
   Version_Name, // 版本名称
@@ -68,4 +80,11 @@ module.exports = {
 
   Value_Login, // 已登录标识
   Value_UnLogin, // 未登录标识
+
+  Page_Home, // 首页
+  Page_Register_Index, // 注册首页
+  Page_Register_BindVip, // 绑定会员卡
+  Page_Register_RegisterSelector, // 注册类型选择
+  Page_Register_RegisterNew, // 注册新会员
+
 }

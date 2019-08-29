@@ -6,7 +6,7 @@
 </i-navigationbar>
 <view class="page-box">
   <image class="page-background"
-         src="../../resource/register_background.jpg">
+         src="../../../resource/register_background.jpg">
   </image>
   <view class="input-area">
     <view class="input-box">
@@ -31,7 +31,7 @@
       </picker>
       <view class="bubble-box">
         <image class="bubble-image"
-               src="../../resource/bubble_bg.png">
+               src="../../../resource/bubble_bg.png">
         </image>
         <view class="bubble-title">
         生日当天有祝福哦！

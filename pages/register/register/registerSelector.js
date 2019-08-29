@@ -1,7 +1,7 @@
 // pages/register/registerSelector.js
 
 const app = getApp();
-const config = require("../../utils/config.js");
+const config = require("../../../utils/config.js");
 
 Page({
 
@@ -82,7 +82,7 @@ Page({
    */
   tapNextStep: function() {
     wx.navigateTo({
-      url: '/pages/register/register?type='+this.data.selectType,
+      url: config.Page_Register_RegisterNew + '?type=' + this.data.selectType,
     })
   },
 })

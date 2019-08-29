@@ -1,7 +1,7 @@
 // pages/register/bindVip.js
 
 const app = getApp();
-const config = require("../../utils/config.js");
+const config = require("../../../utils/config.js");
 
 const intervalDuration = 60;
 

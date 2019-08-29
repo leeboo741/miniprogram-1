@@ -6,20 +6,20 @@
 </i-navigationbar>
 <view class="page-box">
   <image class="page-background"
-         src="../../resource/register_background.jpg">
+         src="../../../resource/register_background.jpg">
   </image>
   <view class="type-select-area">
     <view class="type-select-item"
           bindtap="tapSelectType"
           data-type='0'>
       <image class="type-select-image"
-             src="../../resource/register_type_baby.png">
+             src="../../../resource/register_type_baby.png">
       </image>
       <view class="type-select-title">
       已有宝宝
       </view>
       <image class="selected-image"
-             src="../../resource/chose.png"
+             src="../../../resource/chose.png"
              hidden="{{selectType!=0}}">
       </image>
     </view>
@@ -27,13 +27,13 @@
           bindtap="tapSelectType"
           data-type='1'>
       <image class="type-select-image"
-             src="../../resource/register_type_pregnant.png">
+             src="../../../resource/register_type_pregnant.png">
       </image>
       <view class="type-select-title">
       孕期妈妈
       </view>
       <image class="selected-image"
-             src="../../resource/chose.png"
+             src="../../../resource/chose.png"
              hidden="{{selectType!=1}}">
       </image>
     </view>
