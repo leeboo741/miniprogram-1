@@ -75,7 +75,9 @@
             有效期：{{item.startDate}}-{{item.endDate}}
             </view>
             <view class="coupon-item-button"
-                  wx:if="{{currentCouponState==0}}">
+                  wx:if="{{currentCouponState==0}}"
+                  bindtap="tapUse"
+                  data-couponindex='{{index}}'>
             去使用
             </view>
           </view>
@@ -89,9 +91,23 @@
   </scroll-view>
   <view class="empty-view"
         wx:else>
+    <view class="empty-content">
+      <image class="empty-logo"
+             src="../../../resource/noData.png">
+      </image>
+      <view class="empty-title">
+      {{parse.getEmptyTitle(currentCouponState)}}
+      </view>
+      <view class="receive-coupon-button"
+            wx:if='{{currentCouponState==0}}'
+            bindtap="tapToReceiveCoupon">
+      去领券
+      </view>
+    </view>
   </view>
   <view class="page-foot">
-    <view class="foot-button">
+    <view class="foot-button"
+          bindtap="tapToReceiveCoupon">
     前往领券中心
     </view>
   </view>
@@ -99,6 +115,15 @@
 
 <wxs module='parse'>
   module.exports={
+    getEmptyTitle: function(currentCouponState){
+      if (currentCouponState == 0) {
+        return "您还没有优惠券";
+      } else if (currentCouponState == 1){
+        return "暂无已使用的优惠券";
+      } else {
+        return "暂无已过期的优惠券";
+      }
+    },
     getStampSrc: function(currentCouponState){
       if (currentCouponState == 1){
         return "../../../resource/used.png";
