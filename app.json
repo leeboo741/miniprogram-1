@@ -9,7 +9,8 @@
     "pages/personal/qrCode/index",
     "pages/personal/editPersonal/index",
     "pages/coupon/couponList/index",
-    "pages/coupon/receiveCoupon/index"
+    "pages/coupon/receiveCoupon/index",
+    "pages/balance/balanceRecharge/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

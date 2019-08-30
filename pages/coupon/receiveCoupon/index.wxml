@@ -1,2 +1,125 @@
 <!--pages/coupon/receiveCoupon/index.wxml-->
-<text>pages/coupon/receiveCoupon/index.wxml</text>
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='领券中心'>
+</i-navigationbar>
+
+<scroll-view class="content"
+             style="height: {{height}}px"
+             wx:if='{{dataSource!=null&&dataSource.length>0}}'>
+  <view wx:for='{{dataSource}}'
+          wx:for-item='item'
+          wx:for-index='index'
+          wx:key='{{index}}'
+          class="coupon-item">
+      <image class="coupon-item-bg"
+             src='{{parse.getItemBgImage(item)}}'>
+      </image>
+      <view class="coupon-item-left">
+        <view class="coupon-item-value-box">
+          <view class="coupon-item-unit"
+                wx:if="{{item.type==0}}">
+          ￥
+          </view>
+          <view class="coupon-item-value">
+          {{parse.getCouponValue(item)}}
+          </view>
+          <view class="coupon-item-unit"
+                wx:if='{{item.type==1}}'>
+          折
+          </view>
+        </view>
+        <view class="coupon-item-type-box">
+          <image class="coupon-item-type-bg"
+                 src="../../../resource/couponType.png">
+          </image>
+          <view class="coupon-item-type-title"
+                style="color:{{parse.getCouponTitleColor(item)}}">
+          {{parse.getCouponType(item)}}
+          </view>
+        </view>
+      </view>
+      <view class="coupon-item-right">
+        <view class="coupon-item-info">
+          <view class="coupon-item-name">
+          {{item.name}}
+          </view>
+          <view class="coupon-item-description">
+          {{item.desicription}}
+          </view>
+          <view class="coupon-item-splice-line">
+          </view>
+          <view class="coupon-item-time-area">
+            <view class="coupon-item-time"
+                  style="color: {{parse.getCouponTitleColor(item)}}">
+            有效期：{{item.startDate}}-{{item.endDate}}
+            </view>
+            <view class="coupon-item-button"
+                  bindtap="tapUse"
+                  data-couponindex='{{index}}'>
+            {{parse.getReceiveButtonTitle(item)}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+</scroll-view>
+
+<wxs module='parse'>
+  module.exports={
+    getReceiveButtonTitle: function(coupon){
+      var title = "";
+      if (coupon.valuePoint != null && coupon.valuePoint > 0) {
+        title = coupon.valuePoint + "分";
+      }
+      if (coupon.valueAmount != null && coupon.valueAmount > 0) {
+        if (title.length > 0) {
+          title = title + "+" + coupon.valueAmount + "元";
+        } else {
+          title = coupon.valueAmount + "元"
+        }
+      }
+      if (title.length <= 0 ) {
+        title = "免费";
+      }
+      return title;
+    },
+    getCouponTitleColor: function(coupon){
+      if (coupon.type == 0) {
+        return "#2581be";
+      } else if (coupon.type == 1) {
+        return "#f36721";
+      } else {
+        return "#f3cc20";
+      }
+    },
+    getCouponValue: function(coupon){
+      if (coupon.type == 0) {
+        return coupon.amount;
+      } else if (coupon.type == 1) {
+        return coupon.rate;
+      } else {
+        return "试用";
+      }
+    },
+    getCouponType: function(coupon){
+      if (coupon.type == 0) {
+        return "代金券";
+      } else if (coupon.type == 1) {
+        return "折扣券";
+      } else {
+        return "领用券";
+      }
+    },
+    getItemBgImage: function(coupon) {
+      if (coupon.type == 0) {
+        return "../../../resource/couponBlue.png";
+      } else if (coupon.type == 1) {
+        return "../../../resource/couponRed.png";
+      } else {
+        return "../../../resource/couponYellow.png";
+      }
+    }
+  }
+</wxs>
