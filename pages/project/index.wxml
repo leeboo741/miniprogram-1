@@ -1,0 +1,97 @@
+<!--pages/project/index.wxml-->
+
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='我的项目'>
+</i-navigationbar>
+
+<view class="page-head">
+  <image class="page-head-bg"
+          src="../../resource/headBackground.png">
+  </image>
+  <view class="page-head-content">
+    <image class="page-head-content-bg"
+           src="../../resource/balanceBackground.jpg">
+    </image>
+    <view class="balance-area">
+      <view class="balance-title">
+      项目储值余额：
+      </view>
+      <view class="balance-value-box">
+        <view class="balance-value">
+        {{projectBalanceValue}}
+        </view>
+        <view class="balance-unit">
+        元
+        </view>
+      </view>
+      <view class="detail-box"
+            bindtap="tapDetail">
+        <i-icon type="enterinto"
+                size="20"
+                color="#0ba6e9">
+        </i-icon>
+        <view class="detail-title">
+        明细
+        </view>
+      </view>
+      <view class="recharge-box"
+            bindtap="tapRecharge">
+        <view class="recharge-title">
+        充值
+        </view>
+      </view>
+    </view>
+    <view class="page-head-info">
+      <view class="expire">
+      有效期至：{{expireDate}}
+      </view>
+      <view class="info">
+      充值有礼
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:for='{{projectList}}'
+      wx:for-item='projectItem'
+      wx:for-index='projectIndex'
+      wx:key='{{projectIndex}}'
+      class="project-item">
+  <view class="project-item-left">
+    <view class="project-item-name">
+    {{projectItem.name}}
+    </view>
+    <view class="project-item-description">
+    {{projectItem.description}}
+    </view>
+    <view class="project-item-splic-line">
+    </view>
+    <view class="project-item-expire">
+    有效期：{{projectItem.expireStart}} - {{projectItem.expireEnd}}
+    </view>
+  </view>
+  <view class="project-item-right">
+    <view class="project-order-button"
+          style="background: {{parse.getOrderBackgroundColor(projectItem)}}"
+          bindtap="tapOrder"
+          data-projectindex='{{projectIndex}}'>
+    预约
+    </view>
+  </view>
+</view>
+
+<wxs module='parse'>
+  module.exports={
+    getOrderBackgroundColor: function(project){
+      if (project.type == 0) {
+        return "#accd04";
+      } else if (project.type == 1){
+        return "#f147a2";
+      } else {
+        return "#3c62e9";
+      }
+    }
+  }
+</wxs>

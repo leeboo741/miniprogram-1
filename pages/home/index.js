@@ -331,7 +331,9 @@ Page({
    */
   tapReceiveCoupon: function () {
     console.log("点击领券");
-
+    wx.navigateTo({
+      url: config.Page_Coupon_ReceiveCoupon,
+    })
   },
 
   /**
@@ -378,7 +380,9 @@ Page({
    */
   tapProjectRecharge: function () {
     console.log("点击项目储值充值");
-
+    wx.navigateTo({
+      url: config.Page_Project_ProjectIndex,
+    })
   },
 
   /**

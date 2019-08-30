@@ -66,8 +66,10 @@ const Page_Personal_QRCode = "/pages/personal/qrCode/index"; // 二维码
 const Page_Coupon_CouponList = "/pages/coupon/couponList/index"; // 优惠券列表
 const Page_Coupon_ReceiveCoupon = "/pages/coupon/receiveCoupon/index"; // 领券中心
 
-const Page_Balance_BalanceRecharge ="/pages/balance/balanceRecharge/index"; // 余额充值
-const Page_Balance_BalanceDetail ="/pages/balance/balanceDetail/index"; // 余额明细
+const Page_Balance_BalanceRecharge = "/pages/balance/balanceRecharge/index"; // 余额充值
+const Page_Balance_BalanceDetail = "/pages/balance/balanceDetail/index"; // 余额明细
+
+const Page_Project_ProjectIndex = "/pages/project/index"; // 项目储值首页
   
 module.exports = {
   Service_Phone, // 客服电话
@@ -106,4 +108,6 @@ module.exports = {
 
   Page_Balance_BalanceRecharge, // 余额充值
   Page_Balance_BalanceDetail, // 余额明细
+
+  Page_Project_ProjectIndex, // 项目储值首页
 }

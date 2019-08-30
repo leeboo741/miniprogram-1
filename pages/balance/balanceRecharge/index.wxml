@@ -7,7 +7,7 @@
 
 <view class="page-head">
   <image class="page-head-bg"
-          src="../../../resource/index_head_bg_2.png">
+          src="../../../resource/headBackground.png">
   </image>
   <view class="page-head-content">
     <image class="page-head-content-bg"
