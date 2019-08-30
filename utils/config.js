@@ -65,6 +65,9 @@ const Page_Personal_QRCode = "/pages/personal/qrCode/index"; // 二维码
 
 const Page_Coupon_CouponList = "/pages/coupon/couponList/index"; // 优惠券列表
 const Page_Coupon_ReceiveCoupon = "/pages/coupon/receiveCoupon/index"; // 领券中心
+
+const Page_Balance_BalanceRecharge ="/pages/balance/balanceRecharge/index"; // 余额充值
+const Page_Balance_Detail ="/pages/balance/balanceDetail/index"; // 余额明细
   
 module.exports = {
   Service_Phone, // 客服电话
@@ -101,4 +104,5 @@ module.exports = {
   Page_Coupon_CouponList, // 优惠券列表
   Page_Coupon_ReceiveCoupon, // 领券中心
 
+  Page_Balance_BalanceRecharge, // 余额充值
 }

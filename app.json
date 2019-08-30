@@ -10,7 +10,8 @@
     "pages/personal/editPersonal/index",
     "pages/coupon/couponList/index",
     "pages/coupon/receiveCoupon/index",
-    "pages/balance/balanceRecharge/index"
+    "pages/balance/balanceRecharge/index",
+    "pages/balance/balanceDetail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

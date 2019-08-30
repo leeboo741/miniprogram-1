@@ -1,2 +1,94 @@
 <!--pages/balance/balanceRecharge/index.wxml-->
-<text>pages/balance/balanceRecharge/index.wxml</text>
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='我的优惠券'>
+</i-navigationbar>
+
+<view class="page-head">
+  <image class="page-head-bg"
+          src="../../../resource/index_head_bg_2.png">
+  </image>
+  <view class="page-head-content">
+    <image class="page-head-content-bg"
+           src="../../../resource/balanceBackground.jpg">
+    </image>
+    <view class="balance-title">
+    账户余额：
+    </view>
+    <view class="balance-value-box">
+      <view class="balance-value">
+      {{balanceValue}}
+      </view>
+      <view class="balance-unit">
+      元
+      </view>
+    </view>
+    <view class="bind-box"
+          bindtap="tapBindCard">
+      <image class="bind-icon"
+              src="../../../resource/bind.png">
+      </image>
+      <view class="bind-title">
+      绑定购物卡
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="input-box">
+  <input class="input input-normal"
+         placeholder-class="input-placeholder"
+         placeholder="请输入您要充值的金额"
+         value="{{rechargeValue}}"
+         bindinput="inputRechargeAmount"
+         type="digit">
+  </input>
+</view>
+
+<view class="static-value-box">
+  <view wx:for='{{staticValues}}'
+        wx:for-item='staticValueItem'
+        wx:for-index='staticValueIndex'
+        wx:key='{{staticValueIndex}}'
+        class="static-value-item {{selectStaticValueIndex==staticValueIndex?'static-value-item-selected':'static-value-item-normal'}}"
+        bindtap="tapStaticValue"
+        data-index='{{staticValueIndex}}'>
+    <view class="static-value">
+      <view class="static-value-title {{selectStaticValueIndex==staticValueIndex?'static-value-title-selected':'static-value-title-normal'}}">
+      {{staticValueItem}}
+      </view>
+      <view class="static-value-unit {{selectStaticValueIndex==staticValueIndex?'static-value-value-selected':'static-value-value-normal'}}">
+      元
+      </view>
+    </view>      
+  </view>
+</view>
+
+<view class="confirm-recharge-button"
+      bindtap="tapConfirmRecharge">
+确认充值
+</view>
+
+<view class="promotion-box">
+  <view class="promotion-title">
+  充值活动
+  </view>
+  <view wx:for='{{promotionList}}'
+        wx:for-item='promotionItem'
+        wx:for-index='promotionIndex'
+        wx:key='{{promotionIndex}}'
+        class="promotion-item">
+    <view class="promotion-item-title">
+    {{promotionItem.name}}
+    </view>
+    <view class="promotion-item-splice-line">
+    </view>
+    <view class="promotion-item-description-title">
+    说明：
+    </view>
+    <view class="promotion-item-description">
+    {{promotionItem.description}}
+    </view>
+  </view>
+</view>

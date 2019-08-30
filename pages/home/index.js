@@ -12,79 +12,79 @@ Page({
   data: {
     userInfo: null, // 用户
     couponList: [
-      // {
-      //   name: "优惠券", // 名称
-      //   descripetion: "无门槛使用", // 使用说明
-      //   amount: 15, // 金额
-      // },
-      // {
-      //   name: "优惠券", // 名称
-      //   descripetion: "仅限奶粉使用", // 使用说明
-      //   amount: 15, // 金额
-      // },
-      // {
-      //   name: "折扣券", // 名称
-      //   descripetion: "仅限玩具使用", // 使用说明
-      //   amount: 15, // 金额
-      // },
-      // {
-      //   name: "折扣券", // 名称
-      //   descripetion: "仅限玩具使用", // 使用说明
-      //   amount: 15, // 金额
-      // },
+      {
+        name: "优惠券", // 名称
+        descripetion: "无门槛使用", // 使用说明
+        amount: 15, // 金额
+      },
+      {
+        name: "优惠券", // 名称
+        descripetion: "仅限奶粉使用", // 使用说明
+        amount: 15, // 金额
+      },
+      {
+        name: "折扣券", // 名称
+        descripetion: "仅限玩具使用", // 使用说明
+        amount: 15, // 金额
+      },
+      {
+        name: "折扣券", // 名称
+        descripetion: "仅限玩具使用", // 使用说明
+        amount: 15, // 金额
+      },
     ], // 优惠券列表
     pointGoodsList: [
-      // {
-      //   brand: "BOBO", // 品牌
-      //   type: "奶瓶", // 商品
-      //   amount: 20, // 价格
-      //   point: 180, // 积分
-      // },
-      // {
-      //   brand: "AUBY", // 品牌
-      //   type: "婴儿牙胶棒", // 商品
-      //   amount: 30, // 价格
-      //   point: 550, // 积分
-      // },
-      // {
-      //   brand: "PIGEON", // 品牌
-      //   type: "奶嘴", // 商品
-      //   amount: 50, // 价格
-      //   point: 220, // 积分
-      // }, 
+      {
+        brand: "BOBO", // 品牌
+        type: "奶瓶", // 商品
+        amount: 20, // 价格
+        point: 180, // 积分
+      },
+      {
+        brand: "AUBY", // 品牌
+        type: "婴儿牙胶棒", // 商品
+        amount: 30, // 价格
+        point: 550, // 积分
+      },
+      {
+        brand: "PIGEON", // 品牌
+        type: "奶嘴", // 商品
+        amount: 50, // 价格
+        point: 220, // 积分
+      }, 
     ],// 积分商品
     projectList: [
-      // {
-      //   name: "宝宝游泳馆",
-      // },
-      // {
-      //   name: "产后中心",
-      // },
-      // {
-      //   name: "早教中心",
-      // },
+      {
+        name: "宝宝游泳馆",
+      },
+      {
+        name: "产后中心",
+      },
+      {
+        name: "早教中心",
+      },
     ], // 项目
     depositGoodsList: [
-      // {
-      //   name: "雅培1段900g配方奶粉",
-      //   count: 12,
-      //   unit: "罐"
-      // },
-      // {
-      //   name: "花王尿不湿M码",
-      //   count: 4,
-      //   unit: "箱"
-      // },
-      // {
-      //   name: "施巴婴儿沐浴洗发露140ml",
-      //   count: 2,
-      //   unit: "瓶"
-      // },
-      // {
-      //   name: "中式和尚服",
-      //   count: 1,
-      //   unit: "件"
-      // },
+      {
+        name: "雅培1段900g配方奶粉",
+        count: 12,
+        unit: "罐"
+      },
+      {
+        name: "花王尿不湿M码",
+        count: 4,
+        unit: "箱"
+      },
+      {
+        name: "施巴婴儿沐浴洗发露140ml",
+        count: 2,
+        unit: "瓶"
+      },
+      {
+        name: "中式和尚服",
+        count: 1,
+        unit: "件"
+      },
     ], // 寄存商品
   },
 
@@ -293,7 +293,9 @@ Page({
    */
   tapBalanceRecharge: function () {
     console.log("余额充值");
-    //
+    wx.navigateTo({
+      url: config.Page_Balance_BalanceRecharge,
+    })
   },
 
   /**
