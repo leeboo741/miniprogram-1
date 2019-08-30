@@ -1,1 +1,179 @@
 /* pages/balance/rechargeDetail/index.wxss */
+.page-box{
+  width: 100vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 0;
+}
+
+.page-head{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.page-head-bg{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  height: 50%;
+  width: 100%;
+  z-index: 1;
+}
+
+.page-head-content{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 85%;
+  height: 120rpx;
+  padding: 5rpx 15rpx;
+  z-index: 2;
+  background: white;
+}
+
+.page-head-content-bg{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.balance-title{
+  z-index: 3;
+  font-size: 30rpx;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.balance-value-box{
+  flex-grow: 3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.balance-value{
+  z-index: 3;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #ee2c2c;
+}
+
+.balance-unit{
+  z-index: 3;
+  font-size: 26rpx;
+}
+
+.recharge-box{
+  flex-shrink: 0;
+  justify-self: flex-end;
+  z-index: 3;
+  display: flex;
+  flex-direction: row;
+  padding: 10rpx 25rpx;
+  align-items: center;
+  height: 30rpx;
+  border-radius: 25rpx;
+  background: #ee2c2c;
+}
+
+.recharge-title{
+  font-size: 30rpx;
+  color: white;
+  z-index: 3;
+}
+
+.page-head-tabs{
+  width: 90%;
+  position: absolute;
+  top: 160rpx;
+  left: 5%;
+}
+
+.page-head-tags-box{
+  width: 90%;
+  position: absolute;
+  top: 244rpx;
+  left: 5%;
+  background: rgb(236, 236, 236);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.date-tag{
+  margin: 20rpx;
+  padding: 5rpx 20rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: white;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.date-tag-selected{
+  background: #ee2c2c;
+}
+
+.date-tag-normal{
+  background: #ee2c2c70;
+}
+
+.page-scroll{
+  margin-top: 332rpx; 
+  margin-bottom: 0rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.flow-item{
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  border-bottom: 2rpx dashed lightgray;
+  align-items: center;
+  padding: 20rpx 0rpx;
+  margin: 0rpx auto;
+}
+
+.flow-item-symbol{
+  width: 30rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.flow-item-value{
+  width: 120rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.flow-item-name{
+  flex-grow: 1;
+  font-size: 28rpx;
+  color: lightgray;
+}
+
+.flow-item-time{
+  flex-shrink: 0rpx;
+  font-size: 24rpx;
+  color: lightgray;
+}

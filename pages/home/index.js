@@ -303,7 +303,9 @@ Page({
    */
   tapBalanceDetail: function () {
     console.log("余额明细");
-    // 
+    wx.navigateTo({
+      url: config.Page_Balance_BalanceDetail,
+    })
   },
 
   /**
