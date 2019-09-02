@@ -1,0 +1,185 @@
+<!--pages/project/projectRecharge/index.wxml-->
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='项目储值充值'>
+</i-navigationbar>
+
+<view class="page-head">
+  <image class="page-head-bg"
+          src="../../../resource/headBackground.png">
+  </image>
+  <view class="page-head-content">
+    <image class="page-head-content-bg"
+           src="../../../resource/balanceBackground.jpg">
+    </image>
+    <view class="balance-area">
+      <view class="balance-title">
+      项目储值余额：
+      </view>
+      <view class="balance-value-box">
+        <view class="balance-value">
+        {{projectBalanceValue}}
+        </view>
+        <view class="balance-unit">
+        元
+        </view>
+      </view>
+    </view>
+    <view class="page-head-info">
+      <view class="expire">
+      有效期至：{{expireDate}}
+      </view>
+      <i-icon type='feedback_fill'
+              size="24"
+              color="#0ba6e9">
+      </i-icon>
+      <view class="info"
+            bindtap="tapExpireDetail">
+      有效期说明
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="page-head-tabs">
+  <i-tabs current="{{currentType}}" 
+          bindchange="handleTabChange"
+          color="#0ba6e9">
+    <i-tab wx:for='{{typeList}}'
+            wx:for-item='typeItem'
+            wx:for-index='typeIndex'
+            wx:key='{{typeIndex}}'
+            key="{{typeIndex}}" 
+            title="{{typeItem}}">
+    </i-tab>
+  </i-tabs>
+</view>
+
+<view class="recharge-amount-area"
+      hidden="{{currentType != 0}}">
+
+  <view class="input-box">
+    <input class="input input-normal"
+          placeholder-class="input-placeholder"
+          placeholder="请输入您要充值的金额(固定金额充值更优惠~)"
+          value="{{rechargeValue}}"
+          bindinput="inputRechargeAmount"
+          type="digit">
+    </input>
+  </view>
+
+  <view class="static-value-box">
+    <view wx:for='{{staticValues}}'
+          wx:for-item='staticValueItem'
+          wx:for-index='staticValueIndex'
+          wx:key='{{staticValueIndex}}'
+          class="static-value-item {{selectStaticValueIndex==staticValueIndex?'static-value-item-selected':'static-value-item-normal'}}"
+          bindtap="tapStaticValue"
+          data-index='{{staticValueIndex}}'>
+      <view class="static-value">
+        <view class="static-value-title {{selectStaticValueIndex==staticValueIndex?'static-value-title-selected':'static-value-title-normal'}}">
+        {{staticValueItem}}
+        </view>
+        <view class="static-value-unit {{selectStaticValueIndex==staticValueIndex?'static-value-value-selected':'static-value-value-normal'}}">
+        元
+        </view>
+      </view>      
+    </view>
+  </view>
+
+  <view class="confirm-recharge-button"
+        bindtap="tapConfirmRecharge">
+  确认充值
+  </view>
+
+  <view class="promotion-box">
+    <view class="promotion-title">
+    充值有礼
+    </view>
+    <view wx:for='{{amoutRechargePromotionList}}'
+          wx:for-item='promotionItem'
+          wx:for-index='promotionIndex'
+          wx:key='{{promotionIndex}}'
+          class="promotion-item">
+      <view class="promotion-item-title">
+      {{promotionItem.name}}
+      </view>
+      <view class="promotion-item-splice-line">
+      </view>
+      <view class="promotion-item-description-title">
+      说明：
+      </view>
+      <view class="promotion-item-description">
+      {{promotionItem.description}}
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<view class="recharge-project-area"
+      hidden="{{currentType != 1}}">
+
+  <view class="static-value-box">
+    <view wx:for='{{projectStaticValues}}'
+          wx:for-item='staticValueItem'
+          wx:for-index='staticValueIndex'
+          wx:key='{{staticValueIndex}}'
+          class="static-value-item {{selectProjectStaticValueIndex==staticValueIndex?'static-value-item-selected':'static-value-item-normal'}}"
+          bindtap="tapProjectStaticValue"
+          data-index='{{staticValueIndex}}'>
+      <view class="static-value">
+        <view class="static-value-title {{selectProjectStaticValueIndex==staticValueIndex?'static-value-title-selected':'static-value-title-normal'}}">
+        {{staticValueItem.amount}}
+        </view>
+        <view class="static-value-unit {{selectProjectStaticValueIndex==staticValueIndex?'static-value-value-selected':'static-value-value-normal'}}">
+        元
+        </view>
+      </view> 
+      <view class="static-value-split-line {{selectProjectStaticValueIndex==staticValueIndex?'static-value-split-line-selected':'static-value-split-line-normal'}}">
+      </view>
+      <view class="static-value-expire {{selectProjectStaticValueIndex==staticValueIndex?'static-value-expire-selected':'static-value-expire-normal'}}">
+      有效期:自购买起{{staticValueItem.expireDuration}}个月
+      </view>   
+    </view>
+  </view>  
+
+  <view class="confirm-recharge-button"
+        bindtap="tapConfirmProjectRecharge">
+  确认购买
+  </view>
+
+  <view class="promotion-box"
+        hidden="{{selectProjectStaticValueIndex < 0}}">
+    <view class="promotion-title">
+    充值有礼
+    </view>
+    <view class="promotion-item">
+      <view class="promotion-item-title">
+      {{parse.getSelectProjectPromotionItem(projectPromotionList, selectProjectStaticValueIndex).name}}
+      </view>
+      <view class="promotion-item-detail">
+      套餐包含：{{parse.getSelectProjectPromotionItem(projectPromotionList, selectProjectStaticValueIndex).detail}}
+      </view>
+      <view class="promotion-item-splice-line">
+      </view>
+      <view class="promotion-item-description-title">
+      说明：
+      </view>
+      <view class="promotion-item-description">
+      {{parse.getSelectProjectPromotionItem(projectPromotionList, selectProjectStaticValueIndex).description}}
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<wxs module='parse'>
+  module.exports={
+    getSelectProjectPromotionItem: function(list, selectIndex){
+      return list[selectIndex];
+    }
+  }
+</wxs>
+

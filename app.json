@@ -12,7 +12,8 @@
     "pages/coupon/receiveCoupon/index",
     "pages/balance/balanceRecharge/index",
     "pages/balance/balanceDetail/index",
-    "pages/project/index"
+    "pages/project/index",
+    "pages/project/projectRecharge/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
