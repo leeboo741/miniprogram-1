@@ -1,0 +1,90 @@
+<!--pages/project/projectDetail/index.wxml-->
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='项目储值余额明细'>
+</i-navigationbar>
+<view class="page-box"
+      style="height: {{height}}px">
+  <view class="page-head">
+    <image class="page-head-bg"
+           src="../../../resource/headBackground.png">
+    </image>
+    <view class="page-head-content">
+      <image class="page-head-content-bg"
+            src="../../../resource/balanceBackground.jpg">
+      </image>
+      <view class="balance-area">
+        <view class="balance-title">
+        项目储值余额：
+        </view>
+        <view class="balance-value-box">
+          <view class="balance-value">
+          {{balanceValue}}
+          </view>
+          <view class="balance-unit">
+          元
+          </view>
+        </view>
+        <view class="recharge-box"
+              bindtap="tapRecharge">
+          <view class="recharge-title">
+          充值
+          </view>
+        </view>
+      </view>
+      <view class="page-head-info">
+        <view class="expire">
+        有效期至：{{expireDate}}
+        </view>
+        <view class="info">
+        充值有礼
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="page-head-tabs">
+    <i-tabs current="{{currentType}}" 
+            bindchange="handleTabChange"
+            color="#f3ba33">
+      <i-tab wx:for='{{typeList}}'
+             wx:for-item='typeItem'
+             wx:for-index='typeIndex'
+             wx:key='{{typeIndex}}'
+             key="{{typeIndex}}" 
+             title="{{typeItem}}">
+      </i-tab>
+    </i-tabs>
+  </view>
+  <scroll-view class="page-scroll"
+               scroll-y>
+    <view wx:for='{{dataSource}}'
+          wx:for-item='flowItem'
+          wx:for-index='flowIndex'
+          wx:key='{{flowIndex}}'
+          class="flow-item">
+      <view class="flow-item-symbol">
+      {{flowItem.type==0?"+":"-"}}
+      </view>
+      <view class="flow-item-value">
+      ￥{{flowItem.amount}}
+      </view>
+      <view class="flow-item-name">
+      {{flowItem.name}}
+      </view>
+      <view class="flow-item-time">
+      {{flowItem.date}} {{parse.cutTime(flowItem.time)}}
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<wxs module='parse'>
+  module.exports={
+    cutTime: function(time){
+      var timeArray = time.split(':');
+      var tempTime = timeArray[0] + ":" + timeArray[1];
+      return tempTime;
+    }
+  }
+</wxs>

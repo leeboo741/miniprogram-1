@@ -371,7 +371,9 @@ Page({
    */
   tapProjectDetail: function () {
     console.log("点击项目储值明细");
-
+    wx.navigateTo({
+      url: config.Page_Project_ProjectIndex,
+    })
 
   },
 

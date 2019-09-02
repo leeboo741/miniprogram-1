@@ -426,7 +426,7 @@
           </i-icon>
           <view class="home-section-head-detail-button-title"
                 style="color: {{parse.themeColor('项目储值')}};">
-          明细
+          我的项目
           </view>
         </view>
         <view class="home-section-head-button"

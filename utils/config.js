@@ -71,6 +71,7 @@ const Page_Balance_BalanceDetail = "/pages/balance/balanceDetail/index"; // 余�
 
 const Page_Project_ProjectIndex = "/pages/project/index"; // 项目储值首页
 const Page_Project_ProjectRecharge = "/pages/project/projectRecharge/index"; // 项目储值充值
+const Page_Project_ProjectDetail = "/pages/project/projectDetail/index"; // 项目储值明细
   
 module.exports = {
   Service_Phone, // 客服电话
@@ -112,4 +113,5 @@ module.exports = {
 
   Page_Project_ProjectIndex, // 项目储值首页
   Page_Project_ProjectRecharge, // 项目储值充值
+  Page_Project_ProjectDetail, // 项目储值明细
 }

@@ -1,4 +1,4 @@
-/* pages/balance/rechargeDetail/index.wxss */
+/* pages/project/projectDetail/index.wxss */
 .page-box{
   width: 100vw;
   position: relative;
@@ -13,7 +13,7 @@
   top: 0rpx;
   left: 0rpx;
   width: 100%;
-  height: 160rpx;
+  height: 200rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,18 +26,19 @@
   left: 0rpx;
   height: 50%;
   width: 100%;
-  z-index: 1;
+  z-index: 0;
 }
 
 .page-head-content{
   position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 85%;
-  height: 120rpx;
+  height: 160rpx;
   padding: 5rpx 15rpx;
-  z-index: 2;
+  z-index: 1;
   background: white;
 }
 
@@ -47,93 +48,108 @@
   left: 0rpx;
   width: 100%;
   height: 100%;
-  z-index: 2;
+  z-index: 1;
+}
+
+.balance-area{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10rpx;
 }
 
 .balance-title{
-  z-index: 3;
+  z-index: 2;
   font-size: 30rpx;
   font-weight: bold;
   flex-shrink: 0;
 }
 
 .balance-value-box{
-  flex-grow: 3;
+  flex-grow: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
 .balance-value{
-  z-index: 3;
+  z-index: 2;
   font-size: 36rpx;
   font-weight: bold;
-  color: #ee2c2c;
+  color: #0ba6e9;
 }
 
 .balance-unit{
-  z-index: 3;
+  z-index: 2;
   font-size: 26rpx;
+}
+
+.detail-box{
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 10rpx;
+  padding: 10rpx 0rpx;
+}
+
+.detail-title{
+  border-right: 1rpx solid lightgray;
+  font-size: 26rpx;
+  color: #0ba6e9;
+  margin-left: 10rpx;
+  padding-right: 10rpx;
 }
 
 .recharge-box{
   flex-shrink: 0;
   justify-self: flex-end;
-  z-index: 3;
+  z-index: 2;
   display: flex;
   flex-direction: row;
-  padding: 10rpx 25rpx;
+  padding: 10rpx 15rpx;
   align-items: center;
-  height: 30rpx;
-  border-radius: 25rpx;
-  background: #ee2c2c;
+  height: 40rpx;
+  border-radius: 8rpx;
+  background: #0ba6e9;
 }
 
 .recharge-title{
   font-size: 30rpx;
   color: white;
-  z-index: 3;
+}
+
+.page-head-info{
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index:2;
+}
+
+.expire{
+  background: rgb(238, 238, 238);
+  color: gray;
+  font-size: 24rpx;
+  padding: 5rpx 10rpx;
+}
+
+.info{
+  color: #ee2c2c;
+  font-size: 24rpx;
 }
 
 .page-head-tabs{
   width: 90%;
   position: absolute;
-  top: 160rpx;
+  top: 200rpx;
   left: 5%;
-}
-
-.page-head-tags-box{
-  width: 90%;
-  position: absolute;
-  top: 244rpx;
-  left: 5%;
-  background: rgb(236, 236, 236);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.date-tag{
-  margin: 20rpx;
-  padding: 5rpx 20rpx;
-  text-align: center;
-  font-size: 32rpx;
-  color: white;
-  height: 40rpx;
-  line-height: 40rpx;
-}
-
-.date-tag-selected{
-  background: #ee2c2c;
-}
-
-.date-tag-normal{
-  background: #ee2c2c70;
 }
 
 .page-scroll{
-  margin-top: 332rpx; 
+  margin-top: 284rpx; 
   margin-bottom: 0rpx;
   display: flex;
   flex-direction: column;

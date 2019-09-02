@@ -1,4 +1,8 @@
 // pages/project/index.js
+
+const app = getApp();
+const config = require("../../utils/config.js");
+
 Page({
 
   /**
@@ -93,6 +97,9 @@ Page({
    */
   tapDetail: function () {
     console.log("点击项目储值详细");
+    wx.navigateTo({
+      url: config.Page_Project_ProjectDetail,
+    })
   },
 
   /**
@@ -100,6 +107,9 @@ Page({
    */
   tapRecharge: function () {
     console.log("点击项目储值充值");
+    wx.navigateTo({
+      url: config.Page_Project_ProjectRecharge,
+    })
   },
 
   /**

@@ -13,7 +13,8 @@
     "pages/balance/balanceRecharge/index",
     "pages/balance/balanceDetail/index",
     "pages/project/index",
-    "pages/project/projectRecharge/index"
+    "pages/project/projectRecharge/index",
+    "pages/project/projectDetail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
