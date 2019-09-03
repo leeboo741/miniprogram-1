@@ -1,42 +1,60 @@
-<!--pages/balance/rechargeDetail/index.wxml-->
+<!--pages/point/pointDetail/index.wxml-->
+
 <i-navigationbar titleColor='#000'
                  bgColor='#dedede'
                  showNaviBtn="{{true}}"
-                 pageName='余额明细'>
+                 pageName='项目储值余额明细'>
 </i-navigationbar>
 <view class="page-box"
       style="height: {{height}}px">
   <view class="page-head">
     <image class="page-head-bg"
-            src="../../../resource/headBackground.png">
+           src="../../../resource/headBackground.png">
     </image>
     <view class="page-head-content">
       <image class="page-head-content-bg"
             src="../../../resource/balanceBackground.jpg">
       </image>
-      <view class="balance-title">
-      账户余额：
+      <view class="balance-area">
+        <view class="balance-title">
+        我的积分：
+        </view>
+        <view class="balance-value-box">
+          <view class="balance-value">
+          {{pointValue}}
+          </view>
+          <view class="balance-unit">
+          分
+          </view>
+        </view>
+        <view class="recharge-box"
+              bindtap="tapRecharge">
+          <view class="recharge-title">
+          去兑换
+          </view>
+        </view>
       </view>
-      <view class="balance-value-box">
-        <view class="balance-value">
-        {{balanceValue}}
-        </view>
-        <view class="balance-unit">
-        元
+      <view class="page-head-info">
+        <i-icon type='feedback_fill'
+              size="24"
+              color="#acce00">
+        </i-icon>
+        <view class="info"
+              bindtap="tapPointRole">
+        积分规则
         </view>
       </view>
-      <view class="recharge-box"
-            bindtap="tapRecharge">
-        <view class="recharge-title">
-        充值
-        </view>
+    </view>
+    <view class="page-head-alert">
+      <view class="page-head-alert-title">
+      本月即将失效的积分：{{expiredPoint}} 分
       </view>
     </view>
   </view>
   <view class="page-head-tabs">
     <i-tabs current="{{currentType}}" 
             bindchange="handleTabChange"
-            color="#f3ba33">
+            color="#acce00">
       <i-tab wx:for='{{typeList}}'
              wx:for-item='typeItem'
              wx:for-index='typeIndex'
@@ -68,7 +86,7 @@
       {{flowItem.type==0?"+":"-"}}
       </view>
       <view class="flow-item-value">
-      ￥{{flowItem.amount}}
+      {{flowItem.amount}}
       </view>
       <view class="flow-item-name">
       {{flowItem.name}}

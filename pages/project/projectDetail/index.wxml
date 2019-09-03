@@ -46,7 +46,7 @@
   <view class="page-head-tabs">
     <i-tabs current="{{currentType}}" 
             bindchange="handleTabChange"
-            color="#f3ba33">
+            color="#0ba6e9">
       <i-tab wx:for='{{typeList}}'
              wx:for-item='typeItem'
              wx:for-index='typeIndex'
@@ -55,6 +55,17 @@
              title="{{typeItem}}">
       </i-tab>
     </i-tabs>
+  </view>
+  <view class="page-head-tags-box">
+    <view wx:for='{{dateTags}}'
+          wx:for-item='dateTagItem'
+          wx:for-index='dateTagIndex'
+          wx:key='{{dateTagIndex}}'
+          bindtap="tapDateTag"
+          data-index='{{dateTagIndex}}'
+          class="date-tag {{currentDateTag==dateTagIndex?'date-tag-selected':'date-tag-normal'}}">
+    {{dateTagItem}}
+    </view>
   </view>
   <scroll-view class="page-scroll"
                scroll-y>

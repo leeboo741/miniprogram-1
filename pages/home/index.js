@@ -348,7 +348,9 @@ Page({
    */
   tapPointDetail: function () {
     console.log("点击积分明细");
-
+    wx.navigateTo({
+      url: config.Page_Point_PointDetail,
+    })
   },
 
   /**

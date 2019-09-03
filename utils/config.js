@@ -75,6 +75,8 @@ const Page_Project_ProjectDetail = "/pages/project/projectDetail/index"; // 项�
   
 const Page_DepositGoods_DepositGoodsDetail = "/pages/depositGoods/depositGoodsDetail/index"; // 寄存商品详情
 
+const Page_Point_PointDetail = "/pages/point/pointDetail/index"; // 积分明细
+
 module.exports = {
   Service_Phone, // 客服电话
   Version_Name, // 版本名称
@@ -118,4 +120,6 @@ module.exports = {
   Page_Project_ProjectDetail, // 项目储值明细
 
   Page_DepositGoods_DepositGoodsDetail, // 寄存商品详情
+
+  Page_Point_PointDetail, // 积分明细
 }

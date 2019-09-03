@@ -15,7 +15,8 @@
     "pages/project/index",
     "pages/project/projectRecharge/index",
     "pages/project/projectDetail/index",
-    "pages/depositGoods/depositGoodsDetail/index"
+    "pages/depositGoods/depositGoodsDetail/index",
+    "pages/point/pointDetail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
