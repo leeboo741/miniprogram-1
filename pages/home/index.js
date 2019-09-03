@@ -399,7 +399,9 @@ Page({
    */
   tapDepositDetail: function () {
     console.log("点击寄存商品明细");
-
+    wx.navigateTo({
+      url: config.Page_DepositGoods_DepositGoodsDetail,
+    })
   },
 
   /**
@@ -407,7 +409,9 @@ Page({
    */
   tapReceiveDeposit: function () {
     console.log("点击取商品");
-
+    wx.navigateTo({
+      url: config.Page_DepositGoods_DepositGoodsDetail,
+    })
   },
 
   /**

@@ -1,0 +1,188 @@
+/* pages/depositGoods/depositGoodsDetail/index.wxss */
+.page-box{
+  width: 100vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 0;
+}
+
+.page-head{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.page-head-bg{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  height: 50%;
+  width: 100%;
+  z-index: 1;
+}
+
+.page-head-content{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 85%;
+  height: 120rpx;
+  padding: 5rpx 15rpx;
+  z-index: 2;
+  background: white;
+}
+
+.page-head-content-bg{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.balance-title{
+  z-index: 3;
+  font-size: 30rpx;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.balance-value-box{
+  flex-grow: 3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.balance-value{
+  z-index: 3;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #e40182;
+}
+
+.balance-unit{
+  z-index: 3;
+  font-size: 26rpx;
+}
+
+.page-head-tabs{
+  width: 90%;
+  position: absolute;
+  top: 160rpx;
+  /* next 244rpx */
+  left: 5%;
+}
+
+.page-content{
+  width: 90%;
+  position: absolute;
+  top: 244rpx;
+  left: 5%;
+  bottom: 0rpx;
+}
+
+.page-content-title-box{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 60rpx;
+  background: rgb(236, 236, 236);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.page-content-title{
+  font-size: 28rpx;
+}
+
+.text-left{
+  text-align: left;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.page-scroll{
+  position: absolute;
+  top: 60rpx;
+  left: 0rpx;
+  bottom: 0rpx;
+  width: 100%;
+}
+
+.deposit-goods-item{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20rpx 0rpx;
+  border-bottom: 2rpx dashed lightgray;
+}
+
+.receive-goods-item{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20rpx 0rpx;
+  border-bottom: 2rpx dashed lightgray;
+  padding: 15rpx 0rpx;
+}
+
+.goods-item-name{
+  font-size: 28rpx;
+  font-weight: bold;
+  flex-grow: 1;
+  margin-left: 15rpx;
+  width: 50%;
+  flex-wrap: wrap;
+}
+
+.goods-item-name-receive{
+  font-size: 28rpx;
+  font-weight: bold;
+  flex-grow: 1;
+  margin-left: 15rpx;
+  width: 40%;
+  flex-wrap: wrap;
+}
+
+.goods-item-count{
+  font-size: 24rpx;
+  color: gray;
+  width: 20%;
+  text-align: center;
+}
+
+.goods-item-receive-button{
+  width: 20%;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  margin-right: 15rpx;
+  padding: 15rpx 0rpx;
+  background: #e40182;
+  color: white;
+  font-size: 26rpx;
+  border-radius: 8rpx;
+  text-align: center;
+}
+
+.goods-item-receive-date{
+  width: 30%;
+  margin-right: 15rpx;
+  color: gray;
+  font-size: 22rpx;
+  text-align: center;
+}

@@ -1,0 +1,131 @@
+<!--pages/depositGoods/depositGoodsDetail/index.wxml-->
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='寄存商品明细'>
+</i-navigationbar>
+<view class="page-box"
+      style="height: {{height}}px">
+  <view class="page-head">
+    <image class="page-head-bg"
+            src="../../../resource/headBackground.png">
+    </image>
+    <view class="page-head-content">
+      <image class="page-head-content-bg"
+            src="../../../resource/balanceBackground.jpg">
+      </image>
+      <view class="balance-title">
+      寄存商品：
+      </view>
+      <view class="balance-value-box">
+        <view class="balance-unit">
+        共
+        </view>
+        <view class="balance-value">
+        {{depositGoodsList.length}}
+        </view>
+        <view class="balance-unit">
+        类
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="page-head-tabs">
+    <i-tabs current="{{currentType}}" 
+            bindchange="handleTabChange"
+            color="#e40182">
+      <i-tab wx:for='{{typeList}}'
+             wx:for-item='typeItem'
+             wx:for-index='typeIndex'
+             wx:key='{{typeIndex}}'
+             key="{{typeIndex}}" 
+             title="{{typeItem}}">
+      </i-tab>
+    </i-tabs>
+  </view>
+
+  <view class="page-content"
+        hidden="{{currentType != 0}}">
+    <view class="page-content-title-box">
+      <view class="page-content-title text-left"
+            style="width: 57%; padding-left: 15rpx; flex-grow: 1;">
+      商品
+      </view>
+      <view class="page-content-title text-center"
+            style="width: 20%;">
+      数量
+      </view>
+      <view class="page-content-title text-center"
+            style="width: 20%; padding-right: 15rpx;">
+      操作
+      </view>
+    </view>
+    <scroll-view class="page-scroll"
+                 scroll-y>
+      <view wx:for='{{depositGoodsList}}'
+            wx:for-item='goodsItem'
+            wx:for-index='goodsIndex'
+            wx:key='{{goodsIndex}}'
+            class="deposit-goods-item">
+        <view class="goods-item-name">
+        {{goodsItem.name}}
+        </view>
+        <view class="goods-item-count">
+        {{goodsItem.count}}{{goodsItem.unit}}
+        </view>
+        <view class="goods-item-receive-button"
+              bindtap="tapReceiveGoods"
+              data-index='{{goodsIndex}}'>
+        取商品
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="page-content"
+        hidden="{{currentType != 1}}">
+     <view class="page-content-title-box">
+      <view class="page-content-title text-left"
+            style="width: 40%; padding-left: 15rpx; flex-grow: 1;">
+      商品
+      </view>
+      <view class="page-content-title text-center"
+            style="width: 20%;">
+      数量
+      </view>
+      <view class="page-content-title text-center"
+            style="width: 30%; padding-right: 15rpx;">
+      取回日期
+      </view>
+    </view>
+    <scroll-view class="page-scroll"
+                 scroll-y>
+      <view wx:for='{{receivedGoodsList}}'
+            wx:for-item='goodsItem'
+            wx:for-index='goodsIndex'
+            wx:key='{{goodsIndex}}'
+            class="receive-goods-item">
+        <view class="goods-item-name-receive">
+        {{goodsItem.name}}
+        </view>
+        <view class="goods-item-count">
+        {{goodsItem.count}}{{goodsItem.unit}}
+        </view>
+        <view class="goods-item-receive-date">
+        {{goodsItem.receiveDate}} {{parse.cutTime(goodsItem.receiveTime)}}
+        </view>
+      </view>
+    </scroll-view>   
+  </view>
+  
+</view>
+
+<wxs module='parse'>
+  module.exports={
+    cutTime: function(time){
+      var timeArray = time.split(':');
+      var tempTime = timeArray[0] + ":" + timeArray[1];
+      return tempTime;
+    }
+  }
+</wxs>
