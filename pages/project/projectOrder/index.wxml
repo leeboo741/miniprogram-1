@@ -1,0 +1,185 @@
+<!--pages/project/projectOrder/index.wxml-->
+
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='项目预约'>
+</i-navigationbar>
+
+<view class="page-head">
+  <image class="page-head-bg"
+          src="../../../resource/headBackground.png">
+  </image>
+  <view class="page-head-content">
+    <image class="page-head-content-bg"
+           src="../../../resource/balanceBackground.jpg">
+    </image>
+    <view class="project-info-area">
+      <view class="project-info-name">
+      {{project.name}}：
+      </view>
+      <view class="project-info-amount">
+      {{project.amount}}
+      </view>
+      <view class="project-info-unit">
+      元/{{project.unit}}
+      </view>
+    </view>
+    <view class="project-info-detail">
+    项目服务内容：{{project.detail}}
+    </view>
+    <view class="project-info-time-area">
+      <view class="project-info-time-title">
+      项目时长：
+      </view>
+      <view class="project-info-time">
+      {{project.time}}分钟
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="input-area">
+  <view class="input-box full">
+    <picker bindchange="selectorStore" 
+            value="{{selectStoreIndex}}" 
+            range="{{storeList}}"
+            style="flex-grow: 1;">
+      <view class="{{parse.getStoreInputClass(selectStoreIndex)}}">
+      {{parse.getStoreInputContent(selectStoreIndex, storeList)}}
+      </view>
+    </picker>
+
+    <i-icon i-class='triangle input-icon'
+            type="play_fill"
+            size="24"
+            color="#000">
+    </i-icon>
+  </view>
+</view>
+
+<view class="input-area">
+  <view class="input-box half">
+    <picker bindchange="selectorDate" 
+            mode="date"
+            start='{{startDate}}'
+            end='{{endDate}}'
+            style="flex-grow: 1;">
+      <view class="{{parse.getDateInputClass(selectDate)}}">
+      {{parse.getDateInputContent(selectDate)}}
+      </view>
+    </picker>
+
+    <i-icon i-class='input-icon'
+            type="activity"
+            size="24"
+            color="#000">
+    </i-icon>
+  </view>
+
+  <view class="input-box half">
+    <picker bindchange="selectorTime" 
+            mode="time" 
+            start="00:00"
+            end='23:59'
+            style="flex-grow: 1;">
+      <view class="{{parse.getTimeInputClass(selectTime)}}">
+      {{parse.getTimeInputContent(selectTime)}}
+      </view>
+    </picker>
+    
+    <i-icon i-class='input-icon'
+            type="clock"
+            size="24"
+            color="#000">
+    </i-icon>
+  </view>
+</view>
+
+<view class="input-area">
+  <view class="input-box full">
+    <input class="input-normal"
+           placeholder-class='input-placeholder'
+           value='{{babyName}}'
+           placeholder='宝宝姓名'
+           bindinput='inputBabyName'>
+    </input>
+  </view>
+</view>
+
+<view class="input-area">
+  <view class="input-box full">
+    <input class="input-normal"
+           type='number'
+           placeholder-class='input-placeholder'
+           value='{{phone}}'
+           placeholder='预约人电话'
+           bindinput='inputPhone'>
+    </input>
+  </view>
+</view>
+
+<view class="order-button"
+      bindtap="tapOrder">
+预约
+</view>
+
+<view class="explain-box">
+  <view class="explain-item">
+  预约权益：
+  </view>
+  <view wx:for='{{explainList}}'
+        wx:for-item='explainItem'
+        wx:for-index='explainIndex'
+        wx:key='{{explainIndex}}'
+        class="explain-item">
+  {{explainIndex+1}}：{{explainItem}}
+  </view>
+</view>
+
+<wxs module='parse'>
+  module.exports={
+    getStoreInputClass: function(index){
+      if (index >= 0) {
+        return "input-normal";
+      } else {
+        return "input-placeholder";
+      }
+    },
+    getStoreInputContent: function(index, storeList) {
+      if (index >= 0) {
+        return storeList[index];
+      } else {
+        return "请选择门店";
+      }
+    },
+    getDateInputClass: function(selectDate) {
+      if (selectDate == null || selectDate.length <=0 ){
+        return "input-placeholder";
+      } else {
+        return "input-normal";
+      }
+    },
+    getDateInputContent: function(selectDate) {
+      if (selectDate == null || selectDate.length <=0) {
+        return "选择日期";
+      } else {
+        return selectDate;
+      }
+    },
+    getTimeInputClass: function(selectTime) {
+      if (selectTime == null || selectTime.length <=0 ){
+        return "input-placeholder";
+      } else {
+        return "input-normal";
+      }
+    },
+    getTimeInputContent: function(selectTime) {
+      if (selectTime == null || selectTime.length <=0) {
+        return "选择时间";
+      } else {
+        return selectTime;
+      }
+    }
+  }
+</wxs>

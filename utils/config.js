@@ -72,6 +72,7 @@ const Page_Balance_BalanceDetail = "/pages/balance/balanceDetail/index"; // 余�
 const Page_Project_ProjectIndex = "/pages/project/index"; // 项目储值首页
 const Page_Project_ProjectRecharge = "/pages/project/projectRecharge/index"; // 项目储值充值
 const Page_Project_ProjectDetail = "/pages/project/projectDetail/index"; // 项目储值明细
+const Page_Project_ProjectOrder = "/pages/project/projectOrder/index"; // 项目预约
   
 const Page_DepositGoods_DepositGoodsDetail = "/pages/depositGoods/depositGoodsDetail/index"; // 寄存商品详情
 
@@ -118,6 +119,7 @@ module.exports = {
   Page_Project_ProjectIndex, // 项目储值首页
   Page_Project_ProjectRecharge, // 项目储值充值
   Page_Project_ProjectDetail, // 项目储值明细
+  Page_Project_ProjectOrder, // 项目预约
 
   Page_DepositGoods_DepositGoodsDetail, // 寄存商品详情
 

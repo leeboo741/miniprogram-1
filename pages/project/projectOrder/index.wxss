@@ -1,0 +1,169 @@
+/* pages/project/projectOrder/index.wxss */
+
+.page-head{
+  position: relative;
+  width: 100%;
+  height: 280rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+}
+
+.page-head-bg{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  height: 50%;
+  width: 100%;
+  z-index: 0;
+}
+
+.page-head-content{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  height: 240rpx;
+  padding: 5rpx 15rpx;
+  z-index: 1;
+  background: white;
+}
+
+.page-head-content-bg{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.project-info-area{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15rpx;
+  z-index: 2;
+}
+
+.project-info-name{
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.project-info-amount{
+  font-size: 34rpx;
+  color: #0ba6e9;
+}
+
+.project-info-unit{
+  font-size: 28rpx;
+  color: gray;
+}
+
+.project-info-detail{
+  font-size: 28rpx;
+  color: gray;
+  margin-bottom: 15rpx;
+  z-index: 2;
+}
+
+.project-info-time-area{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  z-index: 2;
+}
+
+.project-info-time-title{
+  font-size: 28rpx;
+  color: gray;
+}
+
+.project-info-time{
+  padding: 5rpx 15rpx;
+  background: #0ba6e9;
+  color: white;
+  font-size: 28rpx;
+}
+
+.input-area{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 30rpx auto;
+  height: 80rpx;
+}
+
+.input-box{
+  border: 1rpx solid lightgray;
+  border-radius: 8rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+}
+
+.full{
+  width: 100%;
+}
+
+.half{
+  width: 48%;
+}
+
+.input-normal{
+  flex-grow: 1;
+  font-size: 30rpx;
+  color: #778899;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 0rpx 20rpx;
+}
+
+.input-placeholder{
+  flex-grow: 1;
+  font-size: 30rpx;
+  color: lightgray;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 0rpx 20rpx;
+}
+
+.input-icon{
+
+  margin-right: 20rpx;
+}
+
+.triangle{
+  transform: rotate(90deg);
+}
+
+.order-button{
+  width: 90%;
+  margin: 30rpx auto;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 36rpx;
+  background: #0ba6e9;
+  color: white;
+  border-radius: 8rpx;
+  text-align: center;
+}
+
+.explain-box{
+  width: 90%;
+  margin: 30rpx auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.explain-item{
+  margin: 5rpx 0rpx;
+  font-size: 24rpx;
+  color: gray;
+}

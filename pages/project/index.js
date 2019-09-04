@@ -117,5 +117,8 @@ Page({
    */
   tapOrder: function (e) {
     console.log("点击预约 index：" + e.currentTarget.dataset.projectindex);
+    wx.navigateTo({
+      url: config.Page_Project_ProjectOrder + "?type=" + e.currentTarget.dataset.projectindex,
+    })
   }
 })

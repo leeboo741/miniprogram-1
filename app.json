@@ -15,6 +15,7 @@
     "pages/project/index",
     "pages/project/projectRecharge/index",
     "pages/project/projectDetail/index",
+    "pages/project/projectOrder/index",
     "pages/depositGoods/depositGoodsDetail/index",
     "pages/point/pointDetail/index"
   ],
