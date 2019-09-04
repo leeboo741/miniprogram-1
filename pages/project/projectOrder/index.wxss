@@ -167,3 +167,21 @@
   font-size: 24rpx;
   color: gray;
 }
+
+.order-count{
+  width: 90%;
+  margin: 30rpx auto;
+  margin-top: 0rpx;
+  background: rgb(236, 236, 236);
+  height: 40rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.order-count-title{
+  height: 40rpx;
+  line-height: 40rpx;
+  color: #0ba6e9;
+  font-size: 26rpx;
+  width: 95%;
+}

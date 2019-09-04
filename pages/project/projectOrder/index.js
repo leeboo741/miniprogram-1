@@ -16,7 +16,7 @@ Page({
       unit: "次",
       detail: "为0~12个月的婴幼儿提供游泳、洗澡、抚触",
       time: 20,
-    },
+    }, // 项目
     storeList:[
       "南昌叠山店",
       "南昌象山店",
@@ -26,20 +26,21 @@ Page({
       "南昌万达店",
       "上饶一店",
       "上饶二店",
-    ],
-    selectStoreIndex: -1,
-    startDate: null,
-    endDate: null,
-    selectDate: null, 
-    selectTime: null,
-    babyName: null,
-    phone: null,
+    ], // 门店列表
+    selectStoreIndex: -1, // 选中门店index
+    startDate: null, // 开始时间
+    endDate: null, // 结束时间
+    selectDate: null,  // 选中日期
+    selectTime: null, // 选中时间
+    babyName: null, // 宝宝名称
+    phone: null, // 预约人电话
+    orderCount: 0, // 预约人数
     explainList: [
       "权益说明第一条，说明说明说明",
       "权益说明第二条，说明说明说明说明说明说明",
       "权益说明第三条，说明说明说明",
       "权益说明第四条，说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明"
-    ],
+    ], // 权益列表
   },
 
   /**

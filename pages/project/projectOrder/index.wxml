@@ -58,7 +58,8 @@
   </view>
 </view>
 
-<view class="input-area">
+<view class="input-area"
+      style="margin-bottom: 0rpx;">
   <view class="input-box half">
     <picker bindchange="selectorDate" 
             mode="date"
@@ -93,6 +94,12 @@
             size="24"
             color="#000">
     </i-icon>
+  </view>
+</view>
+<view class="order-count"
+      hidden="{{parse.showOrderCount(selectDate, selectTime)}}">
+  <view class="order-count-title">
+  {{orderCount}}人已预约
   </view>
 </view>
 
@@ -139,6 +146,13 @@
 
 <wxs module='parse'>
   module.exports={
+    showOrderCount: function(date, time) {
+      if ((date != null && date.length > 0) 
+      && (time != null && time.length > 0)) {
+        return false;
+      }
+      return true;
+    },
     getStoreInputClass: function(index){
       if (index >= 0) {
         return "input-normal";
