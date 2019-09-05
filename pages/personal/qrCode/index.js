@@ -93,7 +93,7 @@ Page({
       canvasId: 'canvas',
       text: codeStr,
       image: {
-        // imageResource: '../../resource/logo.png',
+        imageResource: '../../../resource/qrcodeImage.png',
         dx: qrcode_image_dx,
         dy: qrcode_image_dx,
         dWidth: qrcode_image_w,
