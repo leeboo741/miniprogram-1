@@ -17,7 +17,8 @@
     "pages/project/projectDetail/index",
     "pages/project/projectOrder/index",
     "pages/depositGoods/depositGoodsDetail/index",
-    "pages/point/pointDetail/index"
+    "pages/point/pointDetail/index",
+    "pages/point/pointExchange/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

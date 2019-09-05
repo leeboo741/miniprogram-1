@@ -28,7 +28,7 @@
           </view>
         </view>
         <view class="recharge-box"
-              bindtap="tapRecharge">
+              bindtap="tapExchange">
           <view class="recharge-title">
           去兑换
           </view>

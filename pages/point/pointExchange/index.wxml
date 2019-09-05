@@ -1,0 +1,79 @@
+<!--pages/point/pointExchange/index.wxml-->
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='积分兑换'>
+</i-navigationbar>
+<view class="page-box"
+      style="height: {{height}}px">
+      
+  <view class="page-head">
+    <image class="page-head-bg"
+           src="../../../resource/headBackground.png">
+    </image>
+    <view class="page-head-content">
+      <image class="page-head-content-bg"
+            src="../../../resource/balanceBackground.jpg">
+      </image>
+      <view class="balance-area">
+        <view class="balance-title">
+        我的积分：
+        </view>
+        <view class="balance-value-box">
+          <view class="balance-value">
+          {{pointValue}}
+          </view>
+          <view class="balance-unit">
+          分
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="page-head-alert">
+      <view class="page-head-alert-title">
+      本月即将失效的积分：{{expiredPoint}} 分
+      </view>
+    </view>
+  </view>
+
+  <scroll-view class="page-scroll"
+               scroll-y>
+    <view wx:for='{{dataSource}}'
+          wx:for-item='goodsItem'
+          wx:for-index='goodsIndex'
+          wx:key='{{goodsIndex}}'
+          class="goods-item">
+      <view class="goods-item-left-area">
+        <image class="goods-item-image"
+               src='{{parse.getImageSrc(goodsItem.imagePath)}}'>
+        </image>
+      </view>
+      <view class="goods-item-center-area">
+        <view class="goods-item-name">
+        {{goodsItem.name}}
+        </view>
+        <view class="goods-item-price">
+        {{goodsItem.point}}分+{{goodsItem.amount}}元
+        </view>
+      </view>
+      <view class="goods-item-right-area">
+        <view class="goods-item-exchange"
+              bindtap="tapExchange"
+              data-tapindex='{{goodsIndex}}'>
+        兑换
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<wxs module='parse'>
+  module.exports={
+    getImageSrc: function(imagePath) {
+      if (imagePath == null || imagePath.length <= 0) {
+        return "../../../resource/goods_placeholder.png";
+      }
+      return imagePath;
+    },
+  }
+</wxs>

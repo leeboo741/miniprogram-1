@@ -361,7 +361,9 @@ Page({
    */
   tapExchange: function () {
     console.log("点击积分兑换");
-
+    wx.navigateTo({
+      url: config.Page_Point_PointExchange,
+    })
   },
 
   /**

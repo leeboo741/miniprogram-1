@@ -252,4 +252,13 @@ Page({
       currentDateTag: e.currentTarget.dataset.index
     })
   },
+
+  /**
+   * 点击兑换
+   */
+  tapExchange: function () {
+    wx.navigateTo({
+      url: config.Page_Point_PointExchange,
+    })
+  },
 })
