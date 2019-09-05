@@ -3,7 +3,7 @@
 <i-navigationbar titleColor='#000'
                  bgColor='#dedede'
                  showNaviBtn="{{true}}"
-                 pageName='项目储值余额明细'>
+                 pageName='积分明细'>
 </i-navigationbar>
 <view class="page-box"
       style="height: {{height}}px">

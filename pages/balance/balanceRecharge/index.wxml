@@ -2,7 +2,7 @@
 <i-navigationbar titleColor='#000'
                  bgColor='#dedede'
                  showNaviBtn="{{true}}"
-                 pageName='我的优惠券'>
+                 pageName='余额充值'>
 </i-navigationbar>
 
 <view class="page-head">
@@ -25,7 +25,8 @@
       </view>
     </view>
     <view class="bind-box"
-          bindtap="tapBindCard">
+          bindtap="tapBindCard"
+          hidden="{{true}}">
       <image class="bind-icon"
               src="../../../resource/bind.png">
       </image>
