@@ -314,6 +314,9 @@ Page({
   tapQRCode: function () {
     console.log("点击我的二维码");
     // 跳转二维码页面 展示二维码
+    wx.navigateTo({
+      url: config.Page_Personal_QRCode,
+    })
   },
 
   /**

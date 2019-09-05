@@ -1,2 +1,55 @@
 <!--pages/personal/qrCode/index.wxml-->
-<text>pages/personal/qrCode/index.wxml</text>
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='我的二维码'>
+</i-navigationbar>
+<view class="page-box"
+      style="height: {{height}}px">
+  <view class="page-head">
+    <image class="page-head-bg"
+            src="../../../resource/headBackground.png">
+    </image>
+    <view class="page-head-content">
+      <image class="page-head-content-bg"
+            src="../../../resource/balanceBackground.jpg">
+      </image>
+      <view class="balance-title">
+      账户余额：
+      </view>
+      <view class="balance-value-box">
+        <view class="balance-value">
+        {{balanceValue}}
+        </view>
+        <view class="balance-unit">
+        元
+        </view>
+      </view>
+      <view class="recharge-box"
+            bindtap="tapRecharge">
+        <view class="recharge-title">
+        充值
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="page-content"
+        style="height: {{height-140}}px">
+    <view class="qrcode-box">
+      <canvas canvas-id='canvas' 
+              style="width: {{qrcode_w}}px; height: {{qrcode_w}}px;">
+      </canvas>
+    </view>
+    <view class="code-title">
+    {{code}}
+    </view>
+  </view>
+
+  <view class="page-foot">
+    <view class="foot-button"
+          bindtap="tapUseCoupon">
+    使用优惠券
+    </view>
+  </view>
+</view>
