@@ -12,11 +12,12 @@ const Version_Code = 1; // 版本编号
  *                      网络请求
  */
 /** =================================================== */
-const URL_Service = "http://192.168.3.111:5050"; // 路径
+// const URL_Service = "http://192.168.3.111:5050"; // 路径
+const URL_Service = "http://192.168.3.187:8080"; // 路径
 
-const URL_Register = "/api/customer/"; // 注册
-const URL_Login = "/api/oAuth"; // 登陆
-const URL_UpdateCustomer = "/api/customer/updateCustomer"; // 更新用户
+const URL_Login = "/member/oauth"; // 登陆
+const URL_Register = "/member/reg"; // 注册
+const URL_SendSMS = "/member/bindSms"; // 发送短信验证码
 
 /** =================================================== */
 /** 
@@ -24,9 +25,9 @@ const URL_UpdateCustomer = "/api/customer/updateCustomer"; // 更新用户
  */
 /** =================================================== */
 
-const Prompt_Success = "Success"; // 成功标识
-const Prompt_Error = "Error"; // 错误标识
-const Prompt_NotExist = "NotExist"; // 不存在标识
+const Res_Code_Success = 10000;
+const Res_Code_NotExist = 20004;
+const Res_Code_Unkown = 90001;
 
 /** =================================================== */
 /** 
@@ -43,8 +44,7 @@ const Key_IsLogin = "IsLogin"; // 是否已经登录
  */
 /** =================================================== */
 
-const Value_Login = "Logining"; // 登录标识
-const Value_UnLogin = "UnLogining"; // 未登录标识
+
 
 /** =================================================== */
 /** 
@@ -87,18 +87,15 @@ module.exports = {
   URL_Service, // 请求路径
 
   URL_Register, // 注册
+  URL_SendSMS, // 发送短信验证码
   URL_Login, // 登陆
-  URL_UpdateCustomer, // 更新用户
 
-  Prompt_Success, // 成功标识
-  Prompt_Error, // 错误标识
-  Prompt_NotExist, // 不存在标识
+  Res_Code_Success, // 请求成功
+  Res_Code_NotExist, // 请求失败
+  Res_Code_Unkown, // 请求未知
 
   Key_UserInfo, // 用户信息缓存
   Key_IsLogin, // 是否已经登录
-
-  Value_Login, // 已登录标识
-  Value_UnLogin, // 未登录标识
 
   Page_Home, // 首页
 

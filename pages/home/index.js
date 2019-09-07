@@ -2,7 +2,7 @@
 
 const app = getApp();
 const config = require("../../utils/config.js");
-const loginUtil = require("../../utils/loginUtil.js");
+const userService = require("../../service/userService.js");
 
 Page({
 
@@ -95,19 +95,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (loginUtil.isLogin()) {
-      /**
-       * 如果已经登录
-       * 1 更新用户信息
-       * 2 读取用户信息
-       * 3 展示用户信息
-       */
-    } else {
-      /**
-       * 如果没有登录
-       * 不做任何操作 等待登录
-       */
-    }
+    let that = this;
+    userService.checkLogin(function alreadyLoginCallback(state){
+      if (state) {
+        that.setData({
+          userInfo: userService.getUserInfo()
+        })
+      }
+    },false) 
   },
 
   /**
@@ -137,111 +132,6 @@ Page({
   onUnload: function () {
 
   },
-  /** ======================================= */
-  /**               请求事件                  */
-  /** ======================================= */
-
-  /**
-   * 微信登陆
-   */
-  wxLogin: function () {
-    // 开始微信登陆
-    wx.showLoading({
-      title: '登录中...',
-    })
-    let that = this;
-    wx.login({
-      success: res => {
-        console.log("微信login success => " + res.code);
-        /**
-         * 微信登陆成功
-         * 获取到wxCode
-         * 向服务器请求登陆
-         */
-        that.login(res.code);
-      },
-      fail(res) {
-        /**
-         * 微信登陆失败
-         * 弹窗提示
-         */
-        console.log("微信login fail => " + JSON.stringify(res));
-        wx.hideLoading();
-        wx.showToast({
-          title: '微信登陆失败',
-          icon: 'none'
-        })
-      },
-    })
-  },
-
-  /**
-   * 自有服务器登陆
-   */
-  login: function (wxCode) {
-    wx.request({
-      url: config.URL_Service + config.URL_Login, // 服务器地址
-      data: {
-        "code": wxCode
-      }, // 参数
-      success: res => {
-        console.log("success => " + JSON.stringify(res));
-        
-        if (res.data.prompt == config.Prompt_Success) {
-          /**
-           * 服务器返回登陆成功
-           * 带回用户信息
-           * 保存用户信息
-           * 更新本地保存登陆状态为已登录
-           * 开始请求首页数据
-           */
-          
-        } else if (res.data.prompt == config.Prompt_NotExist) {
-          /**
-           * 服务器返回未注册
-           * 跳转注册页面进行注册
-           */
-          
-          that.jumpToRegister();
-        } else {
-          /**
-           * 服务器返回登陆失败
-           * 弹窗提示
-           */
-          wx.showModal({
-            title: '登陆错误！',
-            content: '登陆错误，请联系管理员或稍后再试',
-            success(res) {
-              if (res.confirm) {
-                that.wxLogin();
-              }
-            }
-          })
-        }
-      }, // 请求成功回调 登陆成功 保存 用户信息。登陆失败，跳转注册页面
-      fail: res => {
-        /**
-         * 链接服务器失败
-         * 弹窗提示
-         */
-        console.log("fail => " + JSON.stringify(res));
-        wx.showModal({
-          title: '登陆失败！',
-          content: '登陆失败，请稍后重新尝试',
-          success(res) {
-            if (res.confirm) {
-              that.wxLogin();
-            }
-          }
-        })
-      }, // 请求失败回调,弹窗，重新请求
-      complete: res => {
-        console.log("complite => " + JSON.stringify(res));
-        wx.hideLoading();
-      }, // 请求完成回调，隐藏loading
-    })
-  },
-  
 
   /** ======================================= */
   /**               页面事件                  */
@@ -273,11 +163,15 @@ Page({
    */
   tapLoginOrRegister: function () {
     console.log("点击注册|登陆");
-    // 开始登录
-    // this.wxLogin();
-    wx.navigateTo({
-      url: config.Page_Register_Index,
-    })
+    let that = this;
+    userService.login(function loginCallback(state, msg){
+      // 登陆成功
+      if (state == config.Res_Code_Success) {
+        that.setData({
+          userInfo: loginUtil.getUserInfo()
+        })
+      }
+    });
   },
 
   /**

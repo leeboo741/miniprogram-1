@@ -3,6 +3,7 @@
 const app = getApp();
 const config = require("../../../utils/config.js");
 const util = require("../../../utils/util.js");
+const registerService = require("../../../service/registerService.js")
 
 const intervalDuration = 60;
 
@@ -112,21 +113,20 @@ Page({
   },
 
   /**
-   * 会员卡输入
-   */
-  inputCard: function (e) {
-    this.setData({
-      card: e.detail.value
-    })
-  },
-
-  /**
    * 获取验证码
    */
   getCode: function () {
     if (this.data.ableGetCode) {
-      console.log("开始倒计时");
-      this.interval();
+      if (!util.isEmpty(this.data.phone) && util.isPhoneAvailable(this.data.phone)) {
+        console.log("开始倒计时");
+        this.interval();
+        registerService.getVerfiyCode(this.data.phone);
+      } else {
+        wx.showToast({
+          title: '请输入正确手机号码',
+          icon: 'none'
+        })
+      }
     }
     console.log("正在倒计时");
   },
@@ -159,10 +159,36 @@ Page({
   },
 
   /**
-   * 点击绑定
+   * 点击注册
    */
   tapRegister: function () {
-
+    if (util.isEmpty(this.data.brithDay)){
+      wx.showToast({
+        title: '请选择日期',
+        icon: 'none'
+      })
+      return;
+    }
+    if (util.isEmpty(this.data.phone)) {
+      wx.showToast({
+        title: '请填写正确手机号',
+        icon: 'none'
+      })
+      return;
+    }
+    if (util.isEmpty(this.data.code)) {
+      wx.showToast({
+        title: '请输入短信验证码',
+        icon: 'none'
+      })
+      return;
+    }
+    registerService.register({
+      memberType: this.data.type==0?"已有宝宝":"孕期妈妈",
+      babyBirthday: this.data.brithDay,
+      phone: this.data.phone,
+      verifyCode: this.data.code,
+    })
   },
 
   /**

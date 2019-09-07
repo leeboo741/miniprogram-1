@@ -30,7 +30,25 @@ function dateLater(dates, later) {
   return dateObj;
 }
 
+function isEmpty(obj) {
+  if (obj == null || obj.length <= 0) {
+    return true;
+  }
+  return false;
+}
+
+function isPhoneAvailable(phone) {
+  var myreg = /^[1][3,4,5,6,7,8][0-9]{9}$/;
+  if (!myreg.test(phone)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
 module.exports = {
   formatTime: formatTime,
-  dateLater: dateLater
+  dateLater: dateLater,
+  isEmpty: isEmpty,
+  isPhoneAvailable: isPhoneAvailable,
 }
