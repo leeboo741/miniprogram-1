@@ -20,7 +20,7 @@
   <view class="bind-vip-card"
         bindtap="tapBind">
     <view class="bind-vip-card-title">
-    绑定会员卡
+    绑定已有账号
     </view>
     <i-icon type="enterinto"
             size="26"

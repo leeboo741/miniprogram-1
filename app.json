@@ -18,7 +18,8 @@
     "pages/project/projectOrder/index",
     "pages/depositGoods/depositGoodsDetail/index",
     "pages/point/pointDetail/index",
-    "pages/point/pointExchange/index"
+    "pages/point/pointExchange/index",
+    "pages/register/bindVip/bindSelector"
   ],
   "window": {
     "backgroundTextStyle": "light",

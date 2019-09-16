@@ -31,18 +31,18 @@ function getUserInfo() {
  */
 function getOpenID() {
   let userInfo = getUserInfo();
-  if (userInfo == null || userInfo.openID == null || userInfo.openID.length <= 0) {
+  if (userInfo == null || userInfo.openId == null || userInfo.openId.length <= 0) {
     return null;
   }
-  return userInfo.openID;
+  return userInfo.openId;
 }
 
 /**
  * 根据openid判断是否登陆
  */
 function isLogin() {
-  let openID = getOpenID();
-  if (openID == null) {
+  let openId = getOpenID();
+  if (openId == null) {
     return false;
   }
   return true;
@@ -71,14 +71,6 @@ function login(loginCallback) {
               success(res) {
                 console.log("微信登陆 => \n" + JSON.stringify(res));
                 let userInfo = res.userInfo;
-                if (userInfo.gender != null && userInfo.gender == "1") {
-                  userInfo.gender = "男";
-                } else {
-                  userInfo.gender = "女";
-                }
-                app.globalData.nickName = userInfo.nickName;
-                app.globalData.avatarUrl = userInfo.avatarUrl;
-                app.globalData.gender = userInfo.gender;
                 // 向服务器请求登陆，返回 本微信 在服务器状态，注册|未注册，
                 wx.request({
                   url: config.URL_Service + config.URL_Login, // 服务器地址
@@ -90,16 +82,8 @@ function login(loginCallback) {
                     requestService.handlerSuccessResponse(
                       res,
                       function successCallback(resData){
-                        let tempUserInfo = JSON.parse(dataObj)
-                        userInfo.customerNo = tempUserInfo.customerNo
-                        userInfo.openID = tempUserInfo.openid
-                        userInfo.phone = tempUserInfo.phone
-                        userInfo.nickName = tempUserInfo.customerName
-                        userInfo.avatarUrl = tempUserInfo.headerImage
-                        userInfo.gender = tempUserInfo.sex
-                        userInfo.role = tempUserInfo.role
-                        userInfo.balance = tempUserInfo.balance
-                        saveUserInfo(userInfo);
+                        let tempUserInfo = resData;
+                        saveUserInfo(tempUserInfo);
                         wx.showToast({
                           title: '登陆成功',
                         })

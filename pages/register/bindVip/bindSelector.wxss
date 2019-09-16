@@ -1,0 +1,54 @@
+/* pages/register/bindVip/bindSelector.wxss */
+
+.account-item{
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: 20rpx auto;
+  border-radius: 10rpx;
+  border: 1rpx solid lightgray;
+}
+
+.account-item-info{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-item-select-icon-box{
+  width: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.account-item-name{
+  font-size: 36rpx;
+  font-weight: bold;
+  padding: 10rpx 15rpx;
+}
+
+.account-item-score{
+  font-size: 30rpx;
+  color: #778899;
+  padding: 10rpx 15rpx;
+}
+
+.account-item-creat{
+  font-size: 28rpx;
+  color: gray;
+  padding: 10rpx 15rpx;
+}
+
+.confirm-button{
+  width: 90%;
+  height: 80rpx;
+  border-radius: 10rpx;
+  line-height: 80rpx;
+  background: #0ba6e9;
+  color: white;
+  font-size: 34rpx;
+  text-align: center;
+  margin: 0rpx auto;
+}

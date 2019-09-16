@@ -29,13 +29,13 @@
       {{getCodeTitle}}
       </view>
     </view>
-    <view class="input-box">
+    <!-- <view class="input-box">
       <input class="input"
              placeholder="填入会员卡"
              bindinput="inputCard">
       
       </input>
-    </view>
+    </view> -->
   </view>
   <view class="bind-button"
         bindtap="tapBind">

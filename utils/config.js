@@ -17,7 +17,9 @@ const URL_Service = "http://192.168.3.187:8080"; // 路径
 
 const URL_Login = "/member/oauth"; // 登陆
 const URL_Register = "/member/reg"; // 注册
-const URL_SendSMS = "/member/bindSms"; // 发送短信验证码
+const URL_SendSMS = "/member/SMS"; // 发送短信验证码
+const URL_Query_User = "/member/bind"; // 查询用户
+const URL_Binding = "/member/bind"; // 绑定用户
 
 /** =================================================== */
 /** 
@@ -25,9 +27,35 @@ const URL_SendSMS = "/member/bindSms"; // 发送短信验证码
  */
 /** =================================================== */
 
-const Res_Code_Success = 10000;
-const Res_Code_NotExist = 20004;
-const Res_Code_Unkown = 90001;
+const Res_Code_Success = 10000; // 成功
+
+const Res_Code_LoginTimeOut = 20001; // 登陆超时
+const Res_Code_LoginFailure = 20002; // 账号密码不正确
+const Res_Code_UserNotExist = 20003; // 用户不存在
+const Res_Code_UnRegister = 20004; // 未注册
+const Res_Code_BindFailed = 20005; // 账户绑定失败
+const Res_Code_UnBind = 20006; // 用户未绑定
+
+const Res_Code_GetMemberError = 30001; // 获取用户信息失败
+
+const Res_Code_OverridePreNum = 40001; // 券类型超过预发数量
+const Res_Code_OverrideGetNumTotal = 40002; // 超过总领取数量
+const Res_Code_OverrideGetNumDay = 40003; // 超过每日领取数量限制
+
+const Res_Code_VerifyCodeError = 70001; // 短信验证码错误
+const Res_Code_PhoneError = 70002; // 输入手机号错误
+const Res_Code_SendMessageFailed = 70003; // 发送短信验证码失败
+const Res_Code_SMSEmpty = 70004; // 短信验证码未空
+
+const Res_Code_OverrideEffectiveDate = 80001; // 未在兑换积分商品时间内
+const Res_Code_OverrideBeyondCount = 80002; // 积分商品库存数量不足
+const Res_Code_OverrideNotEnoughScore = 80003; // 兑换积分不足
+const Res_Code_OverrideExceptionState = 80004; // 商品停售
+const Res_Code_OverrideBeyondLimiteExchange = 80005; // 超出可兑换数量限制
+const Res_Code_OverrideBeyondLimiteExchangeDay = 80006; // 超出单日可兑换数量限制
+
+const Res_Code_Unkown = 90001; // 未知异常
+const Res_Code_DataException = 90002; // 数据异常
 
 /** =================================================== */
 /** 
@@ -56,6 +84,7 @@ const Page_Home = "/pages/home/index"; // 首页
 
 const Page_Register_Index = "/pages/register/index"; // 注册首页
 const Page_Register_BindVip = "/pages/register/bindVip/bindVip"; // 绑定会员卡
+const Page_Register_BindSelector = "/pages/register/bindVip/bindSelector"; // 选择要绑定的会员
 const Page_Register_RegisterSelector = "/pages/register/register/registerSelector"; // 注册类型选择
 const Page_Register_RegisterNew = "/pages/register/register/register"; // 注册新会员
 
@@ -89,10 +118,38 @@ module.exports = {
   URL_Register, // 注册
   URL_SendSMS, // 发送短信验证码
   URL_Login, // 登陆
+  URL_Query_User, // 查询用户
+  URL_Binding, // 绑定用户
 
-  Res_Code_Success, // 请求成功
-  Res_Code_NotExist, // 请求失败
-  Res_Code_Unkown, // 请求未知
+  Res_Code_Success, // 成功
+
+  Res_Code_LoginTimeOut, // 登陆超时
+  Res_Code_LoginFailure, // 账号密码不正确
+  Res_Code_UserNotExist, // 用户不存在
+  Res_Code_UnRegister, // 未注册
+  Res_Code_BindFailed, // 账户绑定失败
+  Res_Code_UnBind, // 用户未绑定
+
+  Res_Code_GetMemberError, // 获取用户信息失败
+
+  Res_Code_OverridePreNum, // 券类型超过预发数量
+  Res_Code_OverrideGetNumTotal, // 超过总领取数量
+  Res_Code_OverrideGetNumDay, // 超过每日领取数量限制
+
+  Res_Code_VerifyCodeError, // 短信验证码错误
+  Res_Code_PhoneError, // 输入手机号错误
+  Res_Code_SendMessageFailed, // 发送短信验证码失败
+  Res_Code_SMSEmpty, // 短信验证码未空
+
+  Res_Code_OverrideEffectiveDate, // 未在兑换积分商品时间内
+  Res_Code_OverrideBeyondCount, // 积分商品库存数量不足
+  Res_Code_OverrideNotEnoughScore, // 兑换积分不足
+  Res_Code_OverrideExceptionState, // 商品停售
+  Res_Code_OverrideBeyondLimiteExchange, // 超出可兑换数量限制
+  Res_Code_OverrideBeyondLimiteExchangeDay, // 超出单日可兑换数量限制
+
+  Res_Code_Unkown, // 未知异常
+  Res_Code_DataException, // 数据异常
 
   Key_UserInfo, // 用户信息缓存
   Key_IsLogin, // 是否已经登录
@@ -101,6 +158,7 @@ module.exports = {
 
   Page_Register_Index, // 注册首页
   Page_Register_BindVip, // 绑定会员卡
+  Page_Register_BindSelector, // 选择绑定账号
   Page_Register_RegisterSelector, // 注册类型选择
   Page_Register_RegisterNew, // 注册新会员
 

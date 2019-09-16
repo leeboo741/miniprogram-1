@@ -1,10 +1,12 @@
 
 const config = require("../utils/config.js")
+const app = getApp();
 
 /**
  * 处理成功请求返回数据
  * @param res 返回数据
- * @param handlerCallback 处理回调
+ * @param handlerSuccessCallback 处理成功回调
+ * @param handlerFailCallback 处理失败回调
  */
 function handlerSuccessResponse (res, handlerSuccessCallback, handlerErrorCallback) {
   console.log("handlerSuccessResponse:\n" + JSON.stringify(res));
@@ -16,11 +18,12 @@ function handlerSuccessResponse (res, handlerSuccessCallback, handlerErrorCallba
     }
   } 
   // 未注册
-  else if (res.data.code == config.Res_Code_NotExist) {
+  else if (res.data.code == config.Res_Code_UnRegister) {
 
     if (handlerErrorCallback) {
       handlerErrorCallback(res.data.errMsg, res.data.code);
     }
+    app.globalData.openId = res.data.errMsg;
     wx.showModal({
       title: '尚未注册',
       content: '是否前往注册',
@@ -45,9 +48,19 @@ function handlerSuccessResponse (res, handlerSuccessCallback, handlerErrorCallba
         title: '未知错误，请联系管理人员',
         icon: 'none'
       })
+    } else if (res.data.code == config.Res_Code_DataException) {
+      wx.showToast({
+        title: '数据异常，请联系管理人员',
+        icon: 'none'
+      })
+    } else if (res.data.code == config.Res_Code_UnBind) {
+      wx.showToast({
+        title: '该手机号已注册，请更换手机号注册或前往绑定！',
+        icon: 'none'
+      })
     } else {
       wx.showToast({
-        title: res.data.msg,
+        title: res.data.errMsg,
         icon: 'none'
       })
     }
@@ -57,7 +70,8 @@ function handlerSuccessResponse (res, handlerSuccessCallback, handlerErrorCallba
 /**
  * 处理失败请求返回数据
  * @param res 返回数据
- * @param handlerCallback 处理回调
+ * @param msg 提示信息
+ * @param handlerFailCallback 处理回调
  */
 function handlerFailResponse (res, msg, handlerFailCallback) {
   console.log("handlerFailResponse:\n" + JSON.stringify(res))

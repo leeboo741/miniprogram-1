@@ -3,7 +3,8 @@
 const app = getApp();
 const config = require("../../../utils/config.js");
 const util = require("../../../utils/util.js");
-const registerService = require("../../../service/registerService.js")
+const registerService = require("../../../service/registerService.js");
+const userService = require("../../../service/userService.js");
 
 const intervalDuration = 60;
 
@@ -20,6 +21,7 @@ Page({
     intervalCount: intervalDuration, // 倒计时
     phone: null, // 手机号
     code: null, // 验证码
+    tempCookie: null, // 临时存储cookie
     brithDay: null, // 生日
     type: 0, // 类型
     startDate: null, // 开始日期
@@ -117,20 +119,28 @@ Page({
    */
   getCode: function () {
     if (this.data.ableGetCode) {
-      if (!util.isEmpty(this.data.phone) && util.isPhoneAvailable(this.data.phone)) {
-        console.log("开始倒计时");
-        this.interval();
-        registerService.getVerfiyCode(this.data.phone);
-      } else {
+      if (util.isEmpty(this.data.phone) || !util.isPhoneAvailable(this.data.phone)) {
         wx.showToast({
-          title: '请输入正确手机号码',
-          icon: 'none'
+          title: '请输入正确手机号码！',
+          icon: 'none',
         })
+        return;
       }
+      console.log("开始倒计时");
+      this.interval();
+      let that = this;
+      registerService.getSMSCode(this.data.phone, function successCallback(cookie) {
+        that.setData({
+          tempCookie: cookie
+        })
+      });
     }
     console.log("正在倒计时");
   },
 
+  /**
+   * 倒计时
+   */
   interval: function (e) {
     let that = this;
     clearInterval(this.data.intervalID);
@@ -169,7 +179,7 @@ Page({
       })
       return;
     }
-    if (util.isEmpty(this.data.phone)) {
+    if (util.isEmpty(this.data.phone) || !util.isPhoneAvailable(this.data.phone)) {
       wx.showToast({
         title: '请填写正确手机号',
         icon: 'none'
@@ -188,7 +198,8 @@ Page({
       babyBirthday: this.data.brithDay,
       phone: this.data.phone,
       verifyCode: this.data.code,
-    })
+      openId: app.globalData.openId,
+    }, this.data.tempCookie)
   },
 
   /**

@@ -1,0 +1,40 @@
+<!--pages/register/bindVip/bindSelector.wxml-->
+
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='选择要绑定的账号'>
+</i-navigationbar>
+<i-panel title="请选择需要绑定的账号">
+  <view wx:for='{{accountList}}'
+        wx:for-index='accountIndex'
+        wx:for-item='accountItem'
+        wx:key='{{accountIndex}}'
+        class="account-item"
+        bindtap="handlerAccountChange"
+        data-index='{{accountIndex}}'>
+    <view class='account-item-info'>
+      <view class="account-item-name">
+      {{accountItem.memberName}}
+      </view>
+      <view class="account-item-score">
+      可用积分：{{accountItem.score}}
+      </view>
+      <view class="account-item-creat">
+      注册时间：{{accountItem.dateCreate}}
+      </view>
+    </view>
+    <view class="account-item-select-icon-box">
+      <i-icon type='success_fill'
+              size="32"
+              color="#0ba6e9"
+              hidden="{{selectedIndex!=accountIndex}}">
+      </i-icon>
+    </view>
+  </view>
+</i-panel>
+
+<view bindtap="handleClick" 
+      class="confirm-button">
+绑定
+</view>

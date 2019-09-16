@@ -2,6 +2,8 @@
 
 const app = getApp();
 const config = require("../../../utils/config.js");
+const util = require("../../../utils/util.js");
+const registerService = require("../../../service/registerService.js");
 
 const intervalDuration = 60;
 
@@ -17,7 +19,8 @@ Page({
     intervalCount: intervalDuration, // 倒计时
     phone: null, // 手机号
     code: null, // 验证码
-    card: null, // 会员卡
+    tempCookie: null, // 临时cookie存储
+    // card: null, // 会员卡
   },
 
   /**
@@ -100,23 +103,39 @@ Page({
   /**
    * 会员卡输入
    */
-  inputCard: function (e) {
-    this.setData({
-      card: e.detail.value
-    })
-  },
+  // inputCard: function (e) {
+  //   this.setData({
+  //     card: e.detail.value
+  //   })
+  // },
 
   /**
    * 获取验证码
    */
   getCode: function () {
     if (this.data.ableGetCode){
+      if (util.isEmpty(this.data.phone) || !util.isPhoneAvailable(this.data.phone)) {
+        wx.showToast({
+          title: '请输入正确手机号码！',
+          icon: 'none',
+        })
+        return;
+      }
       console.log("开始倒计时");
       this.interval();
+      let that = this;
+      registerService.getSMSCode(this.data.phone, function successCallback(cookie){
+        that.setData({
+          tempCookie: cookie
+        })
+      })
     }
     console.log("正在倒计时");
   },
 
+  /**
+   * 倒计时
+   */
   interval: function(e) {
     let that = this;
     clearInterval(this.data.intervalID);
@@ -148,7 +167,15 @@ Page({
    * 点击绑定
    */
   tapBind: function () {
-
+    let that = this;
+    registerService.queryUserWithPhone(this.data.phone,this.data.code,this.data.tempCookie,
+      function querySuccessCallback(data){
+        console.log(JSON.stringify(data));
+        wx.navigateTo({
+          url: config.Page_Register_BindSelector + '?accounts=' + JSON.stringify(data) + '&cookie=' + that.data.tempCookie + '&code=' + that.data.code,
+        })
+      }
+    )
   },
 
   /**

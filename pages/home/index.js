@@ -168,7 +168,7 @@ Page({
       // 登陆成功
       if (state == config.Res_Code_Success) {
         that.setData({
-          userInfo: loginUtil.getUserInfo()
+          userInfo: userService.getUserInfo()
         })
       }
     });
