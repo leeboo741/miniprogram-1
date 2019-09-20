@@ -507,7 +507,8 @@
         </view>
         <view class="home-section-head-button"
               style="background: {{parse.themeColor('寄存商品')}};"
-              bindtap="tapReceiveDeposit">
+              bindtap="tapReceiveDeposit"
+              hidden>
         取商品
         </view>
       </view>

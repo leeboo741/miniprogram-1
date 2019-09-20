@@ -59,7 +59,9 @@ function isLogin() {
   return true;
 }
 
-
+/**
+ * 登陆
+ */
 function login(loginCallback) {
   wx.showLoading({
     title: '登陆中...',
@@ -89,6 +91,7 @@ function login(loginCallback) {
                     "code": wxCode
                   }, // 参数
                   success: res => {
+                    
                     console.log("success => " + JSON.stringify(res));
                     requestService.handlerSuccessResponse(
                       res,

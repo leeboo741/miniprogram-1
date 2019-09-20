@@ -56,7 +56,8 @@
       数量
       </view>
       <view class="page-content-title text-center"
-            style="width: 20%; padding-right: 15rpx;">
+            style="width: 20%; padding-right: 15rpx;"
+            hidden>
       操作
       </view>
     </view>
@@ -75,7 +76,8 @@
         </view>
         <view class="goods-item-receive-button"
               bindtap="tapReceiveGoods"
-              data-index='{{goodsIndex}}'>
+              data-index='{{goodsIndex}}'
+              hidden>
         取商品
         </view>
       </view>

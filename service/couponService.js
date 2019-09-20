@@ -22,6 +22,7 @@ function receiveCoupon(memberNo, couponTypeNo, receiveCouponSuccessCallback, rec
       'content-type': 'application/x-www-form-urlencoded'
     },
     success(res) {
+      console.log("领用优惠券")
       requestService.handlerSuccessResponse(res,
         function handlerSuccessCallback(responseData){
           if (util.isFunction(receiveCouponSuccessCallback)){
@@ -33,7 +34,8 @@ function receiveCoupon(memberNo, couponTypeNo, receiveCouponSuccessCallback, rec
         }
       )
     },
-    fail (res) {
+    fail(res) {
+      console.log("领用优惠券")
       requestService.handlerFailResponse();
     },
     complete(res) {
@@ -66,6 +68,7 @@ function getMyCouponList(memberNo, type, getCouponSuccessCallback, getCouponComp
     url: config.URL_Service + config.URL_Coupon_Customer,
     data: data,
     success(res) {
+      console.log("获取本人优惠券列表")
       requestService.handlerSuccessResponse(res,
         function handlerSuccessCallback(successData) {
           if (util.isFunction(getCouponSuccessCallback)) {
@@ -78,6 +81,7 @@ function getMyCouponList(memberNo, type, getCouponSuccessCallback, getCouponComp
       )
     },
     fail(res) {
+      console.log("获取本人优惠券列表")
       requestService.handlerFailResponse();
     },
     complete(res) {
@@ -103,6 +107,7 @@ function getAllCouponList(startIndex, pageSize, getCouponSuccessCallback, getCou
       limit: pageSize
     },
     success(res) {
+      console.log("获取所有优惠券列表")
       requestService.handlerSuccessResponse(res,
         function handlerSuccessCallback(responseData) {
           if (util.isFunction(getCouponSuccessCallback)) {
@@ -115,6 +120,7 @@ function getAllCouponList(startIndex, pageSize, getCouponSuccessCallback, getCou
       );
     },
     fail(res) {
+      console.log("获取所有优惠券列表")
       requestService.handlerFailResponse();
     },
     complete(res) {

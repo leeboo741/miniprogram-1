@@ -4,6 +4,7 @@ const app = getApp();
 const config = require("../../utils/config.js");
 const userService = require("../../service/userService.js");
 const couponService = require("../../service/couponService.js");
+const depositService = require("../../service/depositService.js");
 
 Page({
 
@@ -12,28 +13,7 @@ Page({
    */
   data: {
     userInfo: null, // 用户
-    couponList: [
-      // {
-      //   name: "优惠券", // 名称
-      //   descripetion: "无门槛使用", // 使用说明
-      //   amount: 15, // 金额
-      // },
-      // {
-      //   name: "优惠券", // 名称
-      //   descripetion: "仅限奶粉使用", // 使用说明
-      //   amount: 15, // 金额
-      // },
-      // {
-      //   name: "折扣券", // 名称
-      //   descripetion: "仅限玩具使用", // 使用说明
-      //   amount: 15, // 金额
-      // },
-      // {
-      //   name: "折扣券", // 名称
-      //   descripetion: "仅限玩具使用", // 使用说明
-      //   amount: 15, // 金额
-      // },
-    ], // 优惠券列表
+    couponList: [], // 优惠券列表
     pointGoodsList: [
       {
         brand: "BOBO", // 品牌
@@ -130,6 +110,14 @@ Page({
 
           }
         );
+        depositService.getDepositGoods(userService.getMemberNo, config.Deposit_Type_Current, 0, 5,
+          function getDepositSuccessCallback(responseData) {
+
+          },
+          function getDepositCompleteCallback() {
+            
+          }
+        )
       }
     }, false) 
   },

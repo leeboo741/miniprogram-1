@@ -25,6 +25,8 @@ const URL_Coupon_Customer = "/coupon/info"; // 用户优惠券
 const URL_Coupon_Recive = "/coupon/info"; // 领取用户券
 const URL_Coupon_List = "/couponType/info"; // 优惠券列表
 
+const URL_Deposit_Get = "/deposit/info"; // 获取寄存商品
+
 /** =================================================== */
 /** 
  *                      Enum
@@ -66,6 +68,9 @@ const QRCode_Type_Coupon = 0; // 二维码类型 优惠券
 const Coupon_Type_Unuse = 0; // 优惠券 未使用
 const Coupon_Type_Used = 1; // 优惠券 已使用
 const Coupon_Type_Expire = 2; // 优惠券 已过期
+
+const Deposit_Type_Current = 0; // 寄存商品 当前寄存
+const Deposit_Type_TakeBack = 1; // 寄存商品 已取回
 
 /** =================================================== */
 /** 
@@ -137,6 +142,8 @@ module.exports = {
   URL_Coupon_Recive, // 领取用户券
   URL_Coupon_List, // 优惠券列表
 
+  URL_Deposit_Get, // 获取寄存商品
+
   Res_Code_Success, // 成功
 
   Res_Code_LoginTimeOut, // 登陆超时
@@ -172,6 +179,9 @@ module.exports = {
   Coupon_Type_Unuse, // 优惠券 未使用
   Coupon_Type_Used, // 优惠券 已使用
   Coupon_Type_Expire, // 优惠券 已过期
+
+  Deposit_Type_Current, // 寄存商品 当前寄存
+  Deposit_Type_TakeBack, // 寄存商品 已取回
 
   Key_UserInfo, // 用户信息缓存
   Key_IsLogin, // 是否已经登录

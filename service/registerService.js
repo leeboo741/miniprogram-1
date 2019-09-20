@@ -14,6 +14,7 @@ function getSMSCode(phone, successCallback) {
       phone: phone
     },
     success (res) {
+      console.log("获取短信验证码")
       let tempCookie = res.header["Set-Cookie"];
       requestService.handlerSuccessResponse(res,
         function tempSuccessCallback(){
@@ -27,6 +28,7 @@ function getSMSCode(phone, successCallback) {
       )
     },
     fail(res) {
+      console.log("获取短信验证码")
       requestService.handlerFailResponse(res);
     }
   })
@@ -56,6 +58,7 @@ function bindAccount(memberNumber, openId, code, cookie) {
       // 'cookie': cookie
     },
     success(res){
+      console.log("绑定会员")
       requestService.handlerSuccessResponse(res,
         function tempSuccessCallback() {
           userService.login(function loginCallback(state) {
@@ -73,6 +76,7 @@ function bindAccount(memberNumber, openId, code, cookie) {
       )
     },
     fail(res) {
+      console.log("绑定会员")
       requestService.handlerFailResponse(res);
       wx.hideLoading();
     },
@@ -106,6 +110,7 @@ function queryUserWithPhone(phoneNumber, verifyCode, cookie, querySuccesCallback
       verifyCode: verifyCode
     },
     success(res){
+      console.log("根据手机号查询用户")
       requestService.handlerSuccessResponse(res, 
         function tempSuccessCallback(data){
           if (querySuccesCallback) {
@@ -119,6 +124,7 @@ function queryUserWithPhone(phoneNumber, verifyCode, cookie, querySuccesCallback
       )
     },
     fail(res) {
+      console.log("根据手机号查询用户")
       requestService.handlerFailResponse(res);
       wx.hideLoading();
     },
@@ -146,6 +152,7 @@ function register(data, cookie){
     header: tempHeader,
     method: "POST", // 请求方式
     success (res) {
+      console.log("注册用户")
       requestService.handlerSuccessResponse(res,
         function successCallback() {
           userService.login(function loginCallback(state){
@@ -162,7 +169,8 @@ function register(data, cookie){
         }
       )
     },
-    fail (res) {
+    fail(res) {
+      console.log("注册用户")
       requestService.handlerFailResponse(res);
       wx.hideLoading();
     },
