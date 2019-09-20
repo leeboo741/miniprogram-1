@@ -119,7 +119,7 @@ Page({
    */
   getCode: function () {
     if (this.data.ableGetCode) {
-      if (util.isEmpty(this.data.phone) || !util.isPhoneAvailable(this.data.phone)) {
+      if (util.checkIsEmpty(this.data.phone) || !util.isPhoneAvailable(this.data.phone)) {
         wx.showToast({
           title: '请输入正确手机号码！',
           icon: 'none',
@@ -172,21 +172,21 @@ Page({
    * 点击注册
    */
   tapRegister: function () {
-    if (util.isEmpty(this.data.brithDay)){
+    if (util.checkIsEmpty(this.data.brithDay)){
       wx.showToast({
         title: '请选择日期',
         icon: 'none'
       })
       return;
     }
-    if (util.isEmpty(this.data.phone) || !util.isPhoneAvailable(this.data.phone)) {
+    if (util.checkIsEmpty(this.data.phone) || !util.isPhoneAvailable(this.data.phone)) {
       wx.showToast({
         title: '请填写正确手机号',
         icon: 'none'
       })
       return;
     }
-    if (util.isEmpty(this.data.code)) {
+    if (util.checkIsEmpty(this.data.code)) {
       wx.showToast({
         title: '请输入短信验证码',
         icon: 'none'

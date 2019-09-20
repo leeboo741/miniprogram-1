@@ -19,7 +19,8 @@
     "pages/depositGoods/depositGoodsDetail/index",
     "pages/point/pointDetail/index",
     "pages/point/pointExchange/index",
-    "pages/register/bindVip/bindSelector"
+    "pages/register/bindVip/bindSelector",
+    "pages/qrCode/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

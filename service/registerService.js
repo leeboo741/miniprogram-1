@@ -17,7 +17,7 @@ function getSMSCode(phone, successCallback) {
       let tempCookie = res.header["Set-Cookie"];
       requestService.handlerSuccessResponse(res,
         function tempSuccessCallback(){
-          if (successCallback) {
+          if (successCallback && typeof successCallback == "function") {
             successCallback(tempCookie)
           }
         },

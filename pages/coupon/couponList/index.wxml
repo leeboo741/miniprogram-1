@@ -26,43 +26,44 @@
   </view>
   <scroll-view scroll-y
                class="page-content-list"
-               wx:if='{{dataSource!=null&&dataSource.length>0}}'>
+               wx:if='{{dataSource!=null&&dataSource.length>0}}'
+               bindscrolltolower='loadmore'>
     <view wx:for='{{dataSource}}'
           wx:for-item='item'
           wx:for-index='index'
           wx:key='{{index}}'
           class="coupon-item">
       <image class="coupon-item-bg"
-             src='{{parse.getItemBgImage(currentCouponState, item)}}'>
+             src='{{parse.getItemBgImage(currentCouponState,item)}}'>
       </image>
       <view class="coupon-item-left">
         <view class="coupon-item-value-box">
           <view class="coupon-item-unit"
-                wx:if="{{item.type==0}}">
+                wx:if="{{item.couponType.couponTypeName=='代金券'}}">
           ￥
           </view>
           <view class="coupon-item-value">
           {{parse.getCouponValue(item)}}
           </view>
           <view class="coupon-item-unit"
-                wx:if='{{item.type==1}}'>
+                wx:if='{{item.couponType.couponTypeName=="折扣券"}}'>
           折
           </view>
         </view>
         <view class="coupon-item-type-box">
           <image class="coupon-item-type-bg"
-                 src="../../../resource/couponType.png">
+                  src="../../../resource/couponType.png">
           </image>
           <view class="coupon-item-type-title"
-                style="color:{{parse.getCouponTitleColor(currentCouponState, item)}}">
-          {{parse.getCouponType(item)}}
+                style="color:{{parse.getCouponTitleColor(currentCouponState,item)}}">
+          {{item.couponType.couponTypeName}}
           </view>
         </view>
       </view>
       <view class="coupon-item-right">
         <view class="coupon-item-info">
           <view class="coupon-item-name">
-          {{item.name}}
+          {{item.couponType.couponTypeDescription}}
           </view>
           <view class="coupon-item-description">
           {{item.desicription}}
@@ -71,21 +72,16 @@
           </view>
           <view class="coupon-item-time-area">
             <view class="coupon-item-time"
-                  style="color: {{parse.getCouponTitleColor(currentCouponState, item)}}">
-            有效期：{{item.startDate}}-{{item.endDate}}
+                  style="color: {{parse.getCouponTitleColor(currentCouponState,item)}}">
+            有效期：{{item.grantDate}}-{{item.validDate}}
             </view>
             <view class="coupon-item-button"
-                  wx:if="{{currentCouponState==0}}"
                   bindtap="tapUse"
                   data-couponindex='{{index}}'>
             去使用
             </view>
           </view>
         </view>
-        <image class="coupon-item-stamp"
-               wx:if='{{currentCouponState!=0}}'
-               src="{{parse.getStampSrc(currentCouponState)}}">
-        </image>
       </view>
     </view>
   </scroll-view>
@@ -135,9 +131,9 @@
       if (currentCouponState != 0){
         return "#8a8a8a";
       } else {
-        if (coupon.type == 0) {
+        if (coupon.couponType.couponTypeName == '代金券') {
           return "#2581be";
-        } else if (coupon.type == 1) {
+        } else if (coupon.couponType.couponTypeName == '折扣券') {
           return "#f36721";
         } else {
           return "#f3cc20";
@@ -145,30 +141,21 @@
       }
     },
     getCouponValue: function(coupon){
-      if (coupon.type == 0) {
-        return coupon.amount;
-      } else if (coupon.type == 1) {
+      if (coupon.couponType.couponTypeName == '代金券') {
+        return coupon.couponType.couponValue;
+      } else if (coupon.couponType.couponTypeName == '折扣券') {
         return coupon.rate;
       } else {
         return "试用";
-      }
-    },
-    getCouponType: function(coupon){
-      if (coupon.type == 0) {
-        return "代金券";
-      } else if (coupon.type == 1) {
-        return "折扣券";
-      } else {
-        return "领用券";
       }
     },
     getItemBgImage: function(currentCouponState, coupon) {
       if (currentCouponState != 0){
         return "../../../resource/couponGrey.png";
       } else {
-        if (coupon.type == 0) {
+        if (coupon.couponType.couponTypeName == '代金券') {
           return "../../../resource/couponBlue.png";
-        } else if (coupon.type == 1) {
+        } else if (coupon.couponType.couponTypeName == '折扣券') {
           return "../../../resource/couponRed.png";
         } else {
           return "../../../resource/couponYellow.png";

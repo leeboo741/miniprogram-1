@@ -2,6 +2,9 @@
 
 const app = getApp();
 const config = require("../../../utils/config.js");
+const couponService = require("../../../service/couponService.js");
+const util = require("../../../utils/util.js");
+const userService = require("../../../service/userService.js")
 
 Page({
 
@@ -10,52 +13,10 @@ Page({
    */
   data: {
     height: null,
-    dataSource: [
-      {
-        name: "满200元减20元代金券", // 名称
-        desicription: "仅限购买奶粉", // 说明
-        startDate: "2019.05.18", // 有效期开始日期
-        endDate: "2019.05.20", // 有效期结束日期
-        amount: 20, // 代金额
-        rate: 0, // 折扣率
-        type: 0, // 类型 0 代金券 1 折扣券 2 领用券
-        valuePoint: 20,
-        valueAmount: 0,
-      },
-      {
-        name: "儿童玩具8.5折", // 名称
-        desicription: "购买两件以上玩具可以享受8.5折优惠", // 说明
-        startDate: "2019.05.18", // 有效期开始日期
-        endDate: "2019.05.20", // 有效期结束日期
-        amount: 0, // 代金额
-        rate: 8.5, // 折扣率
-        type: 1, // 类型 0 代金券 1 折扣券 2 领用券
-        valuePoint: 0,
-        valueAmount: 20,
-      },
-      {
-        name: "大王婴儿纸尿裤试用装", // 名称
-        desicription: "到店任意消费免费领取大王婴儿纸尿裤试用装一片", // 说明
-        startDate: "2019.05.18", // 有效期开始日期
-        endDate: "2019.05.20", // 有效期结束日期
-        amount: 0, // 代金额
-        rate: 0, // 折扣率
-        type: 2, // 类型 0 代金券 1 折扣券 2 领用券
-        valuePoint: 0,
-        valueAmount: 0,
-      },
-      {
-        name: "大王婴儿纸尿裤试用装", // 名称
-        desicription: "到店任意消费免费领取大王婴儿纸尿裤试用装一片", // 说明
-        startDate: "2019.05.18", // 有效期开始日期
-        endDate: "2019.05.20", // 有效期结束日期
-        amount: 0, // 代金额
-        rate: 0, // 折扣率
-        type: 0, // 类型 0 代金券 1 折扣券 2 领用券
-        valuePoint: 20,
-        valueAmount: 20,
-      },
-    ],
+    dataSource: [],
+    pageStartIndex: 0, // 开始下标
+    pageSize: 20, // 页长
+    loadEnd: false, // 是否加载到最后
   },
 
   /**
@@ -65,6 +26,8 @@ Page({
     this.setData({
       height: app.globalData.pageHeight
     })
+
+    this.requestDataSource();
   },
 
   /**
@@ -114,5 +77,61 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 上拉加载更多
+   */
+  loadmore: function () {
+    this.requestDataSource();
+  },
+
+  /**
+   * 點擊領券
+   */
+  tapReceive: function (e) {
+    wx.showLoading({
+      title: '請稍等...',
+    })
+    let tempCoupon = this.data.dataSource[e.currentTarget.dataset.couponindex];
+    couponService.receiveCoupon(userService.getMemberNo(), tempCoupon.couponTypeCode, 
+      function receiveSuccessCallback(responseData){
+        wx.showToast({
+          title: '領取成功',
+        })
+      },
+      function receiveCompleteCallback(){
+        wx.hideLoading();
+      }
+    )
+  },
+
+  /**
+   * 获取数据
+   */
+  requestDataSource: function () {
+    let that = this;
+    wx.showLoading({
+      title: '加载中...',
+    })
+    couponService.getAllCouponList(this.data.pageStartIndex, this.data.pageSize,
+      function getCouponSuccessCallback(responseData) {
+        if (util.checkIsEmpty(responseData)) {
+          that.setData({
+            loadEnd: true
+          })
+        } else {
+          that.data.dataSource = that.data.dataSource.concat(responseData);
+          that.setData({
+            dataSource: that.data.dataSource,
+            pageStartIndex: that.data.pageStartIndex + that.data.pageSize,
+            loadEnd: responseData.length < that.data.pageSize
+          })
+        }
+      },
+      function getCouponCompleteCallback() {
+        wx.hideLoading();
+      }
+    )
   }
 })

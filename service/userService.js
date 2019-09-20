@@ -27,9 +27,20 @@ function getUserInfo() {
 }
 
 /**
+ * 获取用户编号
+ */
+function getMemberNo() {
+  let userInfo = getUserInfo();
+  if (userInfo == null || userInfo.openId == null || userInfo.openId.length <= 0) {
+    return null;
+  }
+  return userInfo.memberNo;
+}
+
+/**
  * 获取openId
  */
-function getOpenID() {
+function getOpenId() {
   let userInfo = getUserInfo();
   if (userInfo == null || userInfo.openId == null || userInfo.openId.length <= 0) {
     return null;
@@ -41,7 +52,7 @@ function getOpenID() {
  * 根据openid判断是否登陆
  */
 function isLogin() {
-  let openId = getOpenID();
+  let openId = getOpenId();
   if (openId == null) {
     return false;
   }
@@ -179,7 +190,8 @@ function popLoginAlert(title, msg, loginConfirmCallback) {
 module.exports = {
   saveUserInfo: saveUserInfo,
   getUserInfo: getUserInfo,
-  getOpenID: getOpenID,
+  getMemberNo: getMemberNo,
+  getOpenId: getOpenId,
   isLogin: isLogin,
   login: login,
   checkLogin: checkLogin,

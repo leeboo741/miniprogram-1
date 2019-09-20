@@ -114,7 +114,7 @@ Page({
    */
   getCode: function () {
     if (this.data.ableGetCode){
-      if (util.isEmpty(this.data.phone) || !util.isPhoneAvailable(this.data.phone)) {
+      if (util.checkIsEmpty(this.data.phone) || !util.isPhoneAvailable(this.data.phone)) {
         wx.showToast({
           title: '请输入正确手机号码！',
           icon: 'none',

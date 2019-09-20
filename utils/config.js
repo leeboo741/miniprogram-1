@@ -21,6 +21,10 @@ const URL_SendSMS = "/member/SMS"; // 发送短信验证码
 const URL_Query_User = "/member/bind"; // 查询用户
 const URL_Binding = "/member/bind"; // 绑定用户
 
+const URL_Coupon_Customer = "/coupon/info"; // 用户优惠券
+const URL_Coupon_Recive = "/coupon/info"; // 领取用户券
+const URL_Coupon_List = "/couponType/info"; // 优惠券列表
+
 /** =================================================== */
 /** 
  *                      Enum
@@ -56,6 +60,12 @@ const Res_Code_OverrideBeyondLimiteExchangeDay = 80006; // 超出单日可兑换
 
 const Res_Code_Unkown = 90001; // 未知异常
 const Res_Code_DataException = 90002; // 数据异常
+
+const QRCode_Type_Coupon = 0; // 二维码类型 优惠券
+
+const Coupon_Type_Unuse = 0; // 优惠券 未使用
+const Coupon_Type_Used = 1; // 优惠券 已使用
+const Coupon_Type_Expire = 2; // 优惠券 已过期
 
 /** =================================================== */
 /** 
@@ -108,6 +118,8 @@ const Page_DepositGoods_DepositGoodsDetail = "/pages/depositGoods/depositGoodsDe
 const Page_Point_PointDetail = "/pages/point/pointDetail/index"; // 积分明细
 const Page_Point_PointExchange = "/pages/point/pointExchange/index"; // 积分兑换
 
+const Page_QRCode_Index = '/pages/qrCode/index'; // 二维码
+
 module.exports = {
   Service_Phone, // 客服电话
   Version_Name, // 版本名称
@@ -120,6 +132,10 @@ module.exports = {
   URL_Login, // 登陆
   URL_Query_User, // 查询用户
   URL_Binding, // 绑定用户
+
+  URL_Coupon_Customer, // 用户优惠券
+  URL_Coupon_Recive, // 领取用户券
+  URL_Coupon_List, // 优惠券列表
 
   Res_Code_Success, // 成功
 
@@ -151,6 +167,12 @@ module.exports = {
   Res_Code_Unkown, // 未知异常
   Res_Code_DataException, // 数据异常
 
+  QRCode_Type_Coupon, // 二维码类型 优惠券
+
+  Coupon_Type_Unuse, // 优惠券 未使用
+  Coupon_Type_Used, // 优惠券 已使用
+  Coupon_Type_Expire, // 优惠券 已过期
+
   Key_UserInfo, // 用户信息缓存
   Key_IsLogin, // 是否已经登录
 
@@ -181,4 +203,6 @@ module.exports = {
 
   Page_Point_PointDetail, // 积分明细
   Page_Point_PointExchange, // 积分兑换
+
+  Page_QRCode_Index, // 二维码
 }

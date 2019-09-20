@@ -30,20 +30,20 @@
 
 .index-head-info-left{
   position: relative;
-  padding: 20rpx;
+  padding: 15rpx;
   flex-shrink: 0;
 }
 
 .index-head-avater{
-  height: 200rpx;
-  width: 200rpx;
-  border-radius: 100rpx;
+  height: 160rpx;
+  width: 160rpx;
+  border-radius: 80rpx;
   overflow: hidden;
 }
 
 .index-head-avater-crown{
   position: absolute;
-  left: 200rpx;
+  left: 160rpx;
   top: 25rpx;
   height: 40rpx;
   width: 40rpx;
@@ -51,8 +51,8 @@
 
 .index-head-avater-vip-area{
   position: absolute;
-  left: 180rpx;
-  top: 180rpx;
+  left: 140rpx;
+  top: 140rpx;
   height: 40rpx;
   width: 40rpx;
 }

@@ -45,7 +45,7 @@
                  wx:else>
           </image>
           <view class="index-head-avater-vip-title">
-          {{userInfo.level.name}}
+          {{userInfo.memberLevel.memberLevelName}}
           </view>
         </view>
       </view>
@@ -73,9 +73,9 @@
         <view class="index-head-info-center-second">
           <!-- 姓名 -->
           <view class="index-head-info-center-customer-name"
-                style="color: parse.getHeadColor(userInfo)"
+                style="color: {{parse.getHeadColor(userInfo)}}"
                 wx:if='{{parse.isLogin(userInfo)}}'>
-          {{userInfo.name}}
+          {{userInfo.memberName?userInfo.memberName:userInfo.nickName}}
           </view>
           
           <open-data type="userNickName" 
@@ -111,14 +111,14 @@
             <view class="index-head-info-center-progress-info">
               <view class="index-head-info-center-progress-value"
                     style="color: {{parse.getHeadColor(userInfo)}}">
-              {{userInfo.level.name}}({{userInfo.level.value}})
+              {{userInfo.memberLevel.memberLevelName}}({{userInfo.memberLevel.growValue}})
               </view>
               <view class="index-head-info-center-progress-line"
                     style="background: {{parse.getHeadColor(userInfo)}}">
               </view>
               <view class="index-head-info-center-progress-current-value"
                     style="color: {{parse.getHeadCurrentColor(userInfo)}}">
-              {{userInfo.level.current}}
+              {{userInfo.growValue}}
               </view>
               <view class="index-head-info-center-progress-line"
                     style="background: {{parse.getHeadColor(userInfo)}}">
@@ -161,7 +161,7 @@
             余额
             </view>
             <view class="index-head-operate-balance-info-value-value">
-            {{parse.getBalance(balance)}}
+            {{parse.getBalance(userInfo.balance)}}
             </view>
             <view class="index-head-operate-balance-info-value-unit">
             元
@@ -226,7 +226,7 @@
         </view>
         <view class="coupon-count"
               style="color: {{parse.themeColor('优惠券')}}">
-        {{parse.getCouponCount(userInfo)}}
+        {{parse.getCouponCount(couponList)}}
         </view>
         <view class="coupon-count-title"
               style="color: {{parse.lightThemeColor('优惠券')}}">
@@ -257,7 +257,7 @@
       </view>
     </view>
     <view class="empty-data"
-          wx:if='{{parse.showEmptyData(userInfo.couponList)}}'>
+          wx:if='{{parse.showEmptyData(couponList)}}'>
       <view class="empty-data-content">
         <image class="empty-data-image"
               src="../../resource/noCoupon.png">
@@ -271,7 +271,7 @@
             display-multiple-items="2"
             next-margin="60rpx"
             wx:else>
-      <block wx:for='{{userInfo.couponList}}'
+      <block wx:for='{{couponList}}'
              wx:for-item='couponItem'
              wx:for-index='couponIndex'
              wx:key='{{couponIndex}}'>
@@ -284,25 +284,31 @@
             <view class="coupon-item-left-area">
               <view class="coupon-item-left-title"
                     style="color: {{parse.themeColor('优惠券')}};">
-              {{couponItem.name}}
+              {{couponItem.couponType.couponTypeName}}
               </view>
               <view class="coupon-item-left-detail"
                     style="color: {{parse.themeColor('优惠券')}};">
-              {{couponItem.descripetion}}
+              {{couponItem.couponType.couponTypeDescription}}
               </view>
             </view>
             <view class="coupon-item-right-area">
               <view class="coupon-item-right-value"
                     style="color: {{parse.themeColor('优惠券')}};">
-              ￥{{couponItem.amount}}
+              {{parse.getCouponValue(couponItem)}}
               </view>
               <view class="coupon-item-right-button"
                     style="background: {{parse.themeColor('优惠券')}};">
               去使用
               </view>
-            </view>
-          </view>
+            </view>   
+          </view>                             
         </swiper-item> 
+      </block>
+      <block wx:if='{{couponList.length == 1}}'>
+        <swiper-item>
+          <view class="coupon-item">
+          </view>
+        </swiper-item>
       </block>
     </swiper>
   </view>
@@ -542,6 +548,14 @@
 
 <wxs module='parse'>
   module.exports={
+    getCouponValue: function(coupon){
+      if(coupon.couponType.couponTypeName == "代金券") {
+        return "￥"+coupon.couponType.couponValue;
+      } else if (coupon.couponType.couponTypeName == "折扣券") {
+        return coupon.couponType.couponValue + "折";
+      }
+      return "免费";
+    },
     isBlackVip: function(userInfo) {
       if (userInfo != null
       && userInfo.isBlackVip != null 
@@ -560,7 +574,7 @@
     },
     getHeadColor: function(userInfo){
       if (userInfo != null
-      && userInfo.isBlackVip != null 
+      && userInfo.isBlackVip != null
       && userInfo.isBlackVip) {
         return "#fff";
       }
@@ -598,19 +612,18 @@
       }
       return false;
     },
-    getCouponCount: function (userInfo) {
-      if (userInfo != null 
-      && userInfo.couponList != null
-      && userInfo.couponList.length > 0) {
-        return userInfo.couponList.length;
+    getCouponCount: function (couponList) {
+      if (couponList != null 
+      && couponList.length > 0) {
+        return couponList.length;
       }
       return 0;
     },
     getPoint: function(userInfo) {
       if (userInfo != null 
-      && userInfo.point != null
-      && userInfo.point.length > 0) {
-        return userInfo.point;
+      && userInfo.score != null
+      && userInfo.score.length > 0) {
+        return userInfo.score;
       }
       return 0;
     },
@@ -630,8 +643,8 @@
     },
     getBalance: function(balance){
       if (balance != null
-      && balance.value != null) {
-        return balance.value;
+      && balance.length > 0) {
+        return balance;
       }
       return 0;
     },

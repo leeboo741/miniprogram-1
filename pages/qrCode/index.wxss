@@ -1,0 +1,23 @@
+/* pages/qrCode/index.wxss */
+.page-box{
+  width: 100vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+}
+
+.qrcode-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.code-title{
+  font-size: 32rpx;
+  color: #778899;
+  margin-top: 50rpx;
+}

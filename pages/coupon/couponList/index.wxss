@@ -163,6 +163,7 @@
   height: 40rpx;
   border-radius: 20rpx;
   line-height: 40rpx;
+  flex-shrink: 0;
 }
 
 .coupon-item-stamp{

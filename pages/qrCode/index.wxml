@@ -1,0 +1,17 @@
+<!--pages/qrCode/index.wxml-->
+<i-navigationbar titleColor='#000'
+                 bgColor='#dedede'
+                 showNaviBtn="{{true}}"
+                 pageName='{{navititle}}'>
+</i-navigationbar>
+<view class="page-box"
+      style="height: {{height}}px">
+  <view class="qrcode-box">
+    <canvas canvas-id='canvas' 
+            style="width: {{qrcode_w}}px; height: {{qrcode_w}}px;">
+    </canvas>
+  </view>
+  <view class="code-title">
+  {{code}}
+  </view>
+</view>

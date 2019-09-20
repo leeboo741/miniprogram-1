@@ -3,6 +3,7 @@
 const app = getApp();
 const config = require("../../utils/config.js");
 const userService = require("../../service/userService.js");
+const couponService = require("../../service/couponService.js");
 
 Page({
 
@@ -12,26 +13,26 @@ Page({
   data: {
     userInfo: null, // 用户
     couponList: [
-      {
-        name: "优惠券", // 名称
-        descripetion: "无门槛使用", // 使用说明
-        amount: 15, // 金额
-      },
-      {
-        name: "优惠券", // 名称
-        descripetion: "仅限奶粉使用", // 使用说明
-        amount: 15, // 金额
-      },
-      {
-        name: "折扣券", // 名称
-        descripetion: "仅限玩具使用", // 使用说明
-        amount: 15, // 金额
-      },
-      {
-        name: "折扣券", // 名称
-        descripetion: "仅限玩具使用", // 使用说明
-        amount: 15, // 金额
-      },
+      // {
+      //   name: "优惠券", // 名称
+      //   descripetion: "无门槛使用", // 使用说明
+      //   amount: 15, // 金额
+      // },
+      // {
+      //   name: "优惠券", // 名称
+      //   descripetion: "仅限奶粉使用", // 使用说明
+      //   amount: 15, // 金额
+      // },
+      // {
+      //   name: "折扣券", // 名称
+      //   descripetion: "仅限玩具使用", // 使用说明
+      //   amount: 15, // 金额
+      // },
+      // {
+      //   name: "折扣券", // 名称
+      //   descripetion: "仅限玩具使用", // 使用说明
+      //   amount: 15, // 金额
+      // },
     ], // 优惠券列表
     pointGoodsList: [
       {
@@ -116,7 +117,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let that = this;
+    userService.checkLogin(function alreadyLoginCallback(state) {
+      if (state) {
+        couponService.getMyCouponList(userService.getMemberNo(), null ,
+          function getCouponSuccessCallback(responseData) {
+            that.setData({
+              couponList: responseData
+            })
+          },
+          function getCouponCompleteCallback() {
 
+          }
+        );
+      }
+    }, false) 
   },
 
   /**
@@ -238,6 +253,10 @@ Page({
    */
   tapCoupon: function(e) {
     console.log("点击优惠券 couponIndex：" + e.currentTarget.dataset.couponindex);
+    let tempCoupon = this.data.couponList[e.currentTarget.dataset.couponindex];
+    wx.navigateTo({
+      url: config.Page_QRCode_Index + "?code=" + tempCoupon.couponNo + "&type=" + config.QRCode_Type_Coupon,
+    })
   },
 
   /**

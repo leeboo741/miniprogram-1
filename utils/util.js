@@ -30,7 +30,7 @@ function dateLater(dates, later) {
   return dateObj;
 }
 
-function isEmpty(obj) {
+function checkIsEmpty(obj) {
   if (obj == null || obj.length <= 0) {
     return true;
   }
@@ -46,9 +46,17 @@ function isPhoneAvailable(phone) {
   }
 }
 
+function isFunction(functionObj) {
+  if (functionObj && typeof functionObj == "function") {
+    return true;
+  } 
+  return false;
+}
+
 module.exports = {
   formatTime: formatTime,
   dateLater: dateLater,
-  isEmpty: isEmpty,
+  checkIsEmpty: checkIsEmpty,
   isPhoneAvailable: isPhoneAvailable,
+  isFunction: isFunction,
 }
